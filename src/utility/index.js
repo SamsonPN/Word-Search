@@ -12,7 +12,8 @@ function createWordSearch(words) {
         grid = newInfo.grid;
         positions = newInfo.positions;
     })
-    return fillGrid(grid);
+    // return fillGrid(grid);
+    return grid;
 }
 
 function fillGrid(grid) {
@@ -28,9 +29,13 @@ function fillGrid(grid) {
 // finds a new position for the word to occupy
 function findPos(gridInfo) {
     let {word, dirs, grid, positions, size} = gridInfo;
+    let posCopy = [...positions];
     
     while(true) {
-        let pos = shuffle(positions)[0];
+        if(posCopy.length === 0) {
+            break;
+        }
+        let pos = shuffle(posCopy).pop();
         let newGrid = insertWord({word, dirs, grid, pos, size});
         if(newGrid) {
             grid = newGrid;
@@ -55,7 +60,6 @@ function insertWord(wordInfo) {
     let directions = [...dirs];
     let isInserted = false;
 
-    
     while( !isInserted ) {
         if(directions.length === 0) {
             grid = false;
@@ -103,6 +107,7 @@ function wordCanFit(wordInfo){
     col += (dCol * len);
     return isWithinGrid(row, col, size);
 }
+
 function isWithinGrid(row, col, size) {
     return (row >= 0 && row < size) && (col >= 0 && col < size);
 } 

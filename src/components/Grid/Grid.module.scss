@@ -5,11 +5,15 @@
 }
 
 .gridRow {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(15, 1fr);
+    gap: 15px;
     > div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         font-size: 1.5em;
-        padding: 7.5px;
+        text-align: center;
         cursor: pointer;
         &:hover {
             color: red;

@@ -29,15 +29,20 @@ export const gridSlice = createSlice({
             'witty', 
             'substantial', 
             'tense', 
-            'swift', 
-            'illegal', 
             'weary', 
             'tender', 
             'occur', 
             'dress', 
-            'cup', 
             'women', 
-            'raise'
+            'raise',
+            'multimedia',
+            'acknowledge',
+            'honey',
+            'wallace',
+            'internship',
+            'ABARTICULATIO',
+            'articulated',
+            'samsonnguyen'
         ],
         firstChar: '',
         lastChar: ''
@@ -60,7 +65,7 @@ export const gridSlice = createSlice({
 
 /* THUNKS */
 export const fetchWords = () => (dispatch, getState) => {
-    let words = [...getState().grid.words];
+    let words = [...getState().grid.words].sort((a, b) => b.length - a.length);
     let grid = createWordSearch(words);
     dispatch(setGrid(grid));
 }
@@ -75,4 +80,8 @@ export const selectGrid = state => state.grid.grid;
 
 
 export default gridSlice.reducer;
+
+
+
+
 

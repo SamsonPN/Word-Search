@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './Grid.module.scss';
 import GridRow from './GridRow';
 import { useSelector, useDispatch } from 'react-redux';
@@ -8,15 +8,23 @@ function atRowEnd(i) {
     return i !== 0 && i % 15 === 0;
 }
 
+
 export default function Grid() {
     const dispatch = useDispatch();
     const grid = useSelector(selectGrid);
     const gridRows = [];
     let gridCells = [];
 
+    useEffect(() => {
+        dispatch(fetchWords())
+    }, [dispatch]);
+
     grid.forEach( (letter, i) => {
         if( atRowEnd(i) || i === grid.length - 1) {
-            let row = Math.trunc( i / 15);
+            if(i === grid.length - 1) {
+                gridCells.push(letter);
+            }
+            let row = Math.trunc( i / 15 );
             gridRows.push(
                 <GridRow key={i} row={row} gridCells={gridCells}/>
             );
@@ -30,10 +38,6 @@ export default function Grid() {
             <div className={styles.grid}>
                 {gridRows}
             </div>
-            <button
-                onClick={() => dispatch(fetchWords())}>
-                test
-            </button>
         </>
     )
 }

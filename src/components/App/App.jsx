@@ -1,13 +1,17 @@
 import React from 'react';
-import Grid from '../Grid/Grid';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Home from '../../routes/home';
 import './App.scss';
-import '../../reducers/counter/Counter.module.scss';
 
 function App() {
   return (
-    <div id="App">
-        <Grid />
-    </div>
+    <Router>
+      <div id="App">
+        <Route path="/" >
+          <Home />
+        </Route>
+      </div>
+    </Router>
   );
 }
 

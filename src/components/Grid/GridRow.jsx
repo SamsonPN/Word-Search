@@ -8,7 +8,7 @@ export default function GridRow(props) {
             row={row}
             col={i}
             key={i}
-            onClick={() => console({row: row, col: i})}>
+            onClick={() => console.log({row: row, col: i})}>
             {cell}
         </div>
     ))
