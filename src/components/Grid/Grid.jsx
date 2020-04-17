@@ -5,27 +5,33 @@ import {
     fetchWords, 
     selectGrid,
     selectFirstChar,
-    setFirstChar
+    selectHighlighted,
+    setFirstChar,
+    setHighlighted
 } from '../../reducers/gridSlice';
 
 function canHighlight(firstChar, lastChar) {
     return firstChar !== '' && firstChar !== lastChar;
 }
 
-function highlightPath(firstChar, lastChar) {
+function highlightPath(pathInfo) {
+    const {firstChar, lastChar, dispatch, highlighted } = pathInfo;
     if( canHighlight(firstChar, lastChar) ) {
         const directionInfo = findDirection(firstChar, lastChar);
         if( isValidPath(directionInfo) ) {
+            removeHighlights(highlighted);
             let { firstPos, wordLength, direction} = directionInfo;
             let { row, col } = firstPos;
-
-            while(wordLength > 0) {
+            let newHighlights = [];
+            while(wordLength + 1 > 0) {
                 let currentPos = (row * 15) + col;
+                newHighlights.push(currentPos);
                 document.getElementById(currentPos).setAttribute('highlighted', true);
                 row += direction.row;
                 col += direction.col;
                 wordLength--;
             }
+            dispatch(setHighlighted(newHighlights))
         }
     }
 }
@@ -42,19 +48,10 @@ function findDirection(firstChar, lastChar) {
     const dCol = calculateDirection(c1, c2);
 
     return {
-        firstPos: {
-            row: r1,
-            col: c1
-        },
-        lastPos: {
-            row: r2,
-            col: c2
-        },
+        firstPos: { row: r1, col: c1 },
+        lastPos: { row: r2, col: c2 },
         wordLength,
-        direction: {
-            row: dRow,
-            col: dCol
-        }
+        direction: { row: dRow, col: dCol}
     }
 }
 
@@ -68,6 +65,12 @@ function calculateDirection(firstPos, lastPos) {
         direction = -1;
     }
     return direction;
+}
+
+function removeHighlights(highlighted) {
+    highlighted.forEach(highlight => {
+        document.getElementById(highlight).removeAttribute('highlighted');
+    })
 }
 
 function isValidPath(directionInfo) {
@@ -86,6 +89,7 @@ export default function Grid() {
     const dispatch = useDispatch();
     const grid = useSelector(selectGrid);
     const firstChar = useSelector(selectFirstChar);
+    const highlighted = useSelector(selectHighlighted);
 
     useEffect(() => {
         dispatch(fetchWords())
@@ -100,8 +104,7 @@ export default function Grid() {
                 e.preventDefault();
                 dispatch(setFirstChar(i))
             }}
-            onMouseEnter={() => highlightPath(firstChar, i)}
-            // onMouseLeave={() => console.log(`I am leaving: ${i}`)}
+            onMouseEnter={() => highlightPath({firstChar, lastChar: i, dispatch, highlighted})}
             onMouseUp={() => dispatch(setFirstChar(''))}
             row={ Math.trunc( i / 15)}
             col={ i % 15}>

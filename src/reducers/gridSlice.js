@@ -45,7 +45,8 @@ export const gridSlice = createSlice({
             'samsonnguyen'
         ],
         firstChar: '',
-        lastChar: ''
+        lastChar: '',
+        highlighted: []
     },
     reducers: {
         setWords: (state, action) => {
@@ -59,6 +60,9 @@ export const gridSlice = createSlice({
         },
         setLastChar: (state, action) => {
             state.lastChar = action.payload;
+        },
+        setHighlighted: (state, action) => {
+            state.highlighted = action.payload;
         }
     }
 });
@@ -71,14 +75,14 @@ export const fetchWords = () => (dispatch, getState) => {
 }
 
 /* ACTIONS */
-export const { setGrid, setFirstChar, setLastChar } = gridSlice.actions;
+export const { setGrid, setFirstChar, setHighlighted } = gridSlice.actions;
 
 
 /* SELECTORS*/
 export const selectWords = state => state.grid.words;
 export const selectGrid = state => state.grid.grid;
 export const selectFirstChar = state => state.grid.firstChar;
-
+export const selectHighlighted = state => state.grid.highlighted;
 
 export default gridSlice.reducer;
 
