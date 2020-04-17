@@ -5,48 +5,9 @@ export const gridSlice = createSlice({
     name: 'grid',
     initialState: {
         grid: [],
-        // words: {
-        //     'scold': false, 
-        //     'shaggy': false, 
-        //     'admit': false, 
-        //     'witty': false, 
-        //     'substantial': false, 
-        //     'tense': false, 
-        //     'swift': false, 
-        //     'illegal': false, 
-        //     'weary': false, 
-        //     'tender': false, 
-        //     'occur': false, 
-        //     'dress': false, 
-        //     'cup': false, 
-        //     'women': false, 
-        //     'raise': false 
-        // },
-        words: [
-            'scold', 
-            'shaggy', 
-            'admit', 
-            'witty', 
-            'substantial', 
-            'tense', 
-            'weary', 
-            'tender', 
-            'occur', 
-            'dress',
-            'i am gr$$00oot',
-            'raise',
-            'multimedia',
-            'acknowledge',
-            'honey',
-            'wallace',
-            'internship',
-            'ABARTICULATIO',
-            'articulated',
-            'samsonnguyen'
-        ],
         firstChar: '',
-        lastChar: '',
-        highlighted: []
+        highlighted: [],
+        words: []
     },
     reducers: {
         setWords: (state, action) => {
@@ -67,15 +28,45 @@ export const gridSlice = createSlice({
     }
 });
 
+
+const wordExample = [
+    'scold', 
+    'shaggy', 
+    'admit', 
+    'witty', 
+    'substantial', 
+    'tense', 
+    'weary', 
+    'tender', 
+    'occur', 
+    'dress',
+    'i am gr$$00oot',
+    'raise',
+    'multimedia',
+    'acknowledge',
+    'honey',
+    'wallace',
+    'internship',
+    'ABARTICULATIO',
+    'articulated',
+    'samsonnguyen'
+];
+
 /* THUNKS */
-export const fetchWords = () => (dispatch, getState) => {
-    let words = [...getState().grid.words].sort((a, b) => b.length - a.length);
-    let grid = createWordSearch(words);
+export const fetchWords = () => dispatch => {
+    let regex = /[^A-Za-z]/gi;
+    const words = [...wordExample].sort((a, b) => b.length - a.length);
+    words.forEach((word, i) => {
+        words[i] = word.replace(regex,"").toUpperCase();
+    })
+    dispatch(setWords(words));
+    let {grid, wordList} = createWordSearch(words);
     dispatch(setGrid(grid));
+    dispatch(setWords(wordList));
 }
 
 /* ACTIONS */
-export const { setGrid, setFirstChar, setHighlighted } = gridSlice.actions;
+export const { setGrid, setWords, setFirstChar, setHighlighted } = gridSlice.actions;
 
 
 /* SELECTORS*/

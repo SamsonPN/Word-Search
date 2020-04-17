@@ -6,8 +6,10 @@ import {
     selectGrid,
     selectFirstChar,
     selectHighlighted,
+    selectWords,
     setFirstChar,
-    setHighlighted
+    setHighlighted,
+    setWords
 } from '../../reducers/gridSlice';
 
 function canHighlight(firstChar, lastChar) {
@@ -85,11 +87,44 @@ function isValidPath(directionInfo) {
     return valid;
 }
 
+function checkIfFound(wordInfo){
+    const {firstChar, lastChar, wordList, dispatch} = wordInfo;
+    let newList = {...wordList};
+    for(let word in newList) {
+        let {first, last} = newList[word];
+        if(firstChar === first && lastChar === last) {
+            newList[word] = {...newList[word], found: 'true'};
+            dispatch(setWords(newList));
+            showOnGrid(newList[word]);
+        }
+    }
+}
+
+function showOnGrid(wordInfo) {
+    const { first, last, dir } = wordInfo;
+    const [dRow, dCol] = dir;
+    let pos = first;
+    let row = Math.trunc( pos / 15 );
+    let col = pos % 15;
+
+    while( pos !== last ) {
+        document.getElementById(pos).style.backgroundColor = 'yellow';
+        row += dRow;
+        col += dCol;
+        pos = (row * 15) + col;
+    }
+    document.getElementById(pos).style.backgroundColor = 'yellow';
+}
+
+
+
+
 export default function Grid() {
     const dispatch = useDispatch();
     const grid = useSelector(selectGrid);
     const firstChar = useSelector(selectFirstChar);
     const highlighted = useSelector(selectHighlighted);
+    const wordList = useSelector(selectWords);
 
     useEffect(() => {
         dispatch(fetchWords())
@@ -105,7 +140,11 @@ export default function Grid() {
                 dispatch(setFirstChar(i))
             }}
             onMouseEnter={() => highlightPath({firstChar, lastChar: i, dispatch, highlighted})}
-            onMouseUp={() => dispatch(setFirstChar(''))}
+            onMouseUp={() => {
+                checkIfFound({firstChar, lastChar: i, wordList, dispatch});
+                dispatch(setFirstChar(''));
+                removeHighlights(highlighted);
+            }}
             row={ Math.trunc( i / 15)}
             col={ i % 15}>
             {letter}

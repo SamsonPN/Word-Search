@@ -1,19 +1,17 @@
 function createWordSearch(words) {
-    let size = 15;
+    const size = 15;
     let grid = new Array(size * size).fill('_');
-    let regex = /[^A-Za-z]/gi;
-    words.forEach((word, i) => {
-        words[i] = word.replace(regex,"").toUpperCase();
-    })
     let dirs = [[0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0], [-1, 1]];
     let positions = grid.map((x, i) => i);
+    let wordList = {};
     words.forEach(word => {
-        let newInfo = findPos({word, dirs, grid, positions, size});
+        let newInfo = findPos({word, dirs, grid, positions, size, wordList});
         grid = newInfo.grid;
         positions = newInfo.positions;
+        wordList = newInfo.wordList;
     })
     // return fillGrid(grid);
-    return grid;
+    return {grid, wordList};
 }
 
 function fillGrid(grid) {
@@ -28,7 +26,7 @@ function fillGrid(grid) {
 
 // finds a new position for the word to occupy
 function findPos(gridInfo) {
-    let {word, dirs, grid, positions, size} = gridInfo;
+    let {word, dirs, grid, positions, size, wordList} = gridInfo;
     let posCopy = [...positions];
     
     while(true) {
@@ -36,13 +34,14 @@ function findPos(gridInfo) {
             break;
         }
         let pos = shuffle(posCopy).pop();
-        let newGrid = insertWord({word, dirs, grid, pos, size});
+        let {newGrid, newList} = insertWord({word, dirs, grid, pos, size, wordList});
         if(newGrid) {
             grid = newGrid;
+            wordList = newList;
             break;
         }
     }
-    return {grid, positions};
+    return {grid, positions, wordList};
 }
 
 function shuffle(arr) {
@@ -56,7 +55,7 @@ function shuffle(arr) {
 }
 
 function insertWord(wordInfo) {
-    let {word, dirs, grid, pos, size} = wordInfo;
+    let {word, dirs, grid, pos, size, wordList} = wordInfo;
     let directions = [...dirs];
     let isInserted = false;
 
@@ -74,13 +73,21 @@ function insertWord(wordInfo) {
             
             if( wordCanFit({row, col, dRow, dCol, size, word}) ) {
                 for(let i = 0; i < word.length; i++) {
+                    if(i === 0) {
+                        wordList[word] = {
+                            first: newPos,
+                            dir: [dRow, dCol],
+                            found: 'false'
+                        };
+                    }
                     let letter = word[i];
                     let gridLetter = grid[newPos];
                     if(gridLetter === '_' || gridLetter === letter) {
                         gridCopy[newPos] = letter;
                         if(i === word.length - 1) {
                             isInserted = true;
-                            grid = [...gridCopy]
+                            grid = [...gridCopy];
+                            wordList[word].last = newPos;
                         }
                     }
                     else {
@@ -97,7 +104,7 @@ function insertWord(wordInfo) {
         }
         
     }
-    return grid;
+    return {newGrid: grid, newList: wordList};
 }
 
 function wordCanFit(wordInfo){

@@ -11,5 +11,8 @@
             style: italic;
         }
         padding: 5px;
+        &[found="true"] {
+            text-decoration: line-through;
+        }
     }
 }
