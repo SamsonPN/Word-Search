@@ -1,7 +1,7 @@
 function createWordSearch(words) {
     let size = 15;
     let grid = new Array(size * size).fill('_');
-    let regex = /[^\A-Za-z]/gi;
+    let regex = /[^A-Za-z]/gi;
     words.forEach((word, i) => {
         words[i] = word.replace(regex,"").toUpperCase();
     })
@@ -12,8 +12,8 @@ function createWordSearch(words) {
         grid = newInfo.grid;
         positions = newInfo.positions;
     })
-    // return fillGrid(grid);
-    return grid;
+    return fillGrid(grid);
+    // return grid;
 }
 
 function fillGrid(grid) {

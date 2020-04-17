@@ -1,14 +1,15 @@
 import React from 'react';
 import styles from './Grid.module.scss';
 
+
 export default function GridRow(props) {
     const { row, gridCells } = props;
     let gridCellContainer = gridCells.map((cell, i) => (
         <div
-            row={row}
-            col={i}
+            draggable='true'
             key={i}
-            onClick={() => console.log({row: row, col: i})}>
+            row={row}
+            col={i}>
             {cell}
         </div>
     ))

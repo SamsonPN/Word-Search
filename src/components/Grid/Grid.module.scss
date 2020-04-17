@@ -2,21 +2,22 @@
     display: flex;
     flex-direction: column;
     background-color: #D9CB9E;
+    background-color: green;
 }
 
 .gridRow {
     display: grid;
     grid-template-columns: repeat(15, 1fr);
-    gap: 15px;
     > div {
         display: flex;
         justify-content: center;
         align-items: center;
         font-size: 1.5em;
         text-align: center;
+        padding: 10px;
         cursor: pointer;
         &:hover {
-            color: red;
+            background-color: white;
         }
     }
 }
