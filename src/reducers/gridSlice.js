@@ -77,6 +77,7 @@ export const { setGrid, setFirstChar, setLastChar } = gridSlice.actions;
 /* SELECTORS*/
 export const selectWords = state => state.grid.words;
 export const selectGrid = state => state.grid.grid;
+export const selectFirstChar = state => state.grid.firstChar;
 
 
 export default gridSlice.reducer;

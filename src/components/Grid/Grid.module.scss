@@ -1,23 +1,19 @@
 .grid {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(15, 1fr);
     background-color: #D9CB9E;
     background-color: green;
 }
 
-.gridRow {
-    display: grid;
-    grid-template-columns: repeat(15, 1fr);
-    > div {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 1.5em;
-        text-align: center;
-        padding: 10px;
-        cursor: pointer;
-        &:hover {
-            background-color: white;
-        }
+.gridCell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    &[highlighted] {
+        background-color: blue;
     }
 }

@@ -12,8 +12,8 @@ function createWordSearch(words) {
         grid = newInfo.grid;
         positions = newInfo.positions;
     })
-    return fillGrid(grid);
-    // return grid;
+    // return fillGrid(grid);
+    return grid;
 }
 
 function fillGrid(grid) {
