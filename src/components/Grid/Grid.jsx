@@ -29,7 +29,7 @@ function highlightPath(pathInfo) {
             while(wordLength + 1 > 0) {
                 let currentPos = (row * 15) + col;
                 newHighlights.push(currentPos);
-                document.getElementById(currentPos).setAttribute('highlighted', true);
+                document.getElementById(currentPos).setAttribute('highlighted', 'true');
                 row += direction.row;
                 col += direction.col;
                 wordLength--;
@@ -121,7 +121,9 @@ function showOnGrid(wordInfo) {
 
 function generateRandomColor() {
     const color = randomColor({
-        luminosity: 'bright'
+        luminosity: 'bright',
+        format: 'hsla',
+        alpha: '0.5'
     })
     document.documentElement.style.setProperty('--highlight-color', color);
 }
@@ -140,9 +142,9 @@ export default function Grid() {
 
     const gridCells = grid.map((letter, i) => (
         <div
+            className={styles.gridCell}
             id={i}
             key={i}
-            className={styles.gridCell}
             onMouseDown={(e) => {
                 e.preventDefault();
                 dispatch(setFirstChar(i))

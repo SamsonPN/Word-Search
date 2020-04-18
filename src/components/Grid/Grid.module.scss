@@ -17,7 +17,11 @@
         weight: 700;
         size: 1.5em;
     }
-    &[highlighted] {
-        background-color: var(--highlight-color);
+    &[highlighted="true"] {
+        /*
+            !important is used here to override gridCell.style.backgroundColor (an inline style)
+             because it has a higher specificity than classes and attributes.
+        */
+        background-color: var(--highlight-color) !important;
     }
 }
