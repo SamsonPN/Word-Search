@@ -1,7 +1,6 @@
 .grid {
     display: grid;
     grid-template-columns: repeat(15, 1fr);
-    // background-color: black;
 }
 
 .gridCell {
@@ -10,7 +9,6 @@
     align-items: center;
     text-align: center;
     padding: 10px;
-    // color: white;
     cursor: pointer;
     transition: background-color 0.25s cubic-bezier(0.1, 0.7, 1.0, 0.1);
     font-size: 1.5em;

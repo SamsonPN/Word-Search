@@ -7,6 +7,7 @@ export default function WordList() {
     const words = useSelector(selectWords);
     let wordList = Object.keys(words).map(word => (
         <p
+            id={word}
             key={word}
             found={words[word].found}>
             {word}

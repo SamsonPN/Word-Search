@@ -11,6 +11,7 @@ import {
     setHighlighted,
     setWords
 } from '../../reducers/gridSlice';
+import randomColor from 'randomcolor';
 
 function canHighlight(firstChar, lastChar) {
     return firstChar !== '' && firstChar !== lastChar;
@@ -95,29 +96,35 @@ function checkIfFound(wordInfo){
         if(firstChar === first && lastChar === last) {
             newList[word] = {...newList[word], found: 'true'};
             dispatch(setWords(newList));
-            showOnGrid(newList[word]);
+            showOnGrid({...newList[word], word});
+            generateRandomColor();
         }
     }
 }
 
 function showOnGrid(wordInfo) {
-    const { first, last, dir } = wordInfo;
+    const { first, last, dir, word } = wordInfo;
     const [dRow, dCol] = dir;
+    const color = document.documentElement.style.getPropertyValue('--highlight-color');
     let pos = first;
     let row = Math.trunc( pos / 15 );
     let col = pos % 15;
-
     while( pos !== last ) {
-        document.getElementById(pos).style.backgroundColor = 'yellow';
+        document.getElementById(pos).style.backgroundColor = color;
         row += dRow;
         col += dCol;
         pos = (row * 15) + col;
     }
-    document.getElementById(pos).style.backgroundColor = 'yellow';
+    document.getElementById(pos).style.backgroundColor = color;
+    document.getElementById(word).style.color = color;
 }
 
-
-
+function generateRandomColor() {
+    const color = randomColor({
+        luminosity: 'bright'
+    })
+    document.documentElement.style.setProperty('--highlight-color', color);
+}
 
 export default function Grid() {
     const dispatch = useDispatch();
@@ -127,7 +134,8 @@ export default function Grid() {
     const wordList = useSelector(selectWords);
 
     useEffect(() => {
-        dispatch(fetchWords())
+        dispatch(fetchWords());
+        generateRandomColor();
     }, [dispatch]);
 
     const gridCells = grid.map((letter, i) => (
