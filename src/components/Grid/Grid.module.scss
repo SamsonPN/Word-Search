@@ -10,7 +10,7 @@
     text-align: center;
     padding: 10px;
     cursor: pointer;
-    transition: background-color 0.25s cubic-bezier(0.1, 0.7, 1.0, 0.1);
+    transition: background 0.25s cubic-bezier(0.1, 0.7, 1.0, 0.1);
     font-size: 1.5em;
     font: {
         family: var(--primary-font);
@@ -22,6 +22,6 @@
             !important is used here to override gridCell.style.backgroundColor (an inline style)
              because it has a higher specificity than classes and attributes.
         */
-        background-color: var(--highlight-color) !important;
+        background: var(--highlight-color) !important;
     }
 }

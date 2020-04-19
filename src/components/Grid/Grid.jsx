@@ -9,7 +9,8 @@ import {
     selectWords,
     setFirstChar,
     setHighlighted,
-    setWords
+    setWords,
+    incrementFound
 } from '../../reducers/gridSlice';
 import randomColor from 'randomcolor';
 
@@ -96,6 +97,7 @@ function checkIfFound(wordInfo){
         if(firstChar === first && lastChar === last) {
             newList[word] = {...newList[word], found: 'true'};
             dispatch(setWords(newList));
+            dispatch(incrementFound());
             showOnGrid({...newList[word], word});
             generateRandomColor();
         }
@@ -103,19 +105,22 @@ function checkIfFound(wordInfo){
 }
 
 function showOnGrid(wordInfo) {
-    const { first, last, dir, word } = wordInfo;
+    const { first, dir, word } = wordInfo;
     const [dRow, dCol] = dir;
     const color = document.documentElement.style.getPropertyValue('--highlight-color');
     let pos = first;
     let row = Math.trunc( pos / 15 );
     let col = pos % 15;
-    while( pos !== last ) {
-        document.getElementById(pos).style.backgroundColor = color;
+    let wLen = word.length;
+
+    while( wLen > 0 ) {
+        let elementStyle = document.getElementById(pos).style;
+        elementStyle.background = color;
         row += dRow;
         col += dCol;
         pos = (row * 15) + col;
+        wLen--;
     }
-    document.getElementById(pos).style.backgroundColor = color;
     document.getElementById(word).style.color = color;
 }
 

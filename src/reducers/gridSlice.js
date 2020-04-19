@@ -8,7 +8,8 @@ export const gridSlice = createSlice({
         firstChar: '',
         highlighted: [],
         words: [],
-        color: ''
+        color: '',
+        foundWords: 0
     },
     reducers: {
         setWords: (state, action) => {
@@ -28,6 +29,9 @@ export const gridSlice = createSlice({
         },
         setColor: (state, action) => {
             state.color = action.payload;
+        },
+        incrementFound: (state) => {
+            state.foundWords += 1;
         }
     }
 });
@@ -70,7 +74,7 @@ export const fetchWords = () => dispatch => {
 }
 
 /* ACTIONS */
-export const { setGrid, setWords, setFirstChar, setHighlighted, setColor } = gridSlice.actions;
+export const { setGrid, setWords, setFirstChar, setHighlighted, setColor, incrementFound } = gridSlice.actions;
 
 
 /* SELECTORS*/
@@ -79,6 +83,7 @@ export const selectGrid = state => state.grid.grid;
 export const selectFirstChar = state => state.grid.firstChar;
 export const selectHighlighted = state => state.grid.highlighted;
 export const selectColor = state => state.grid.color;
+export const selectFoundWords = state => state.grid.foundWords;
 
 export default gridSlice.reducer;
 
