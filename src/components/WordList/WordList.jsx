@@ -1,10 +1,9 @@
 import React, { useEffect, useRef } from 'react'
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { selectWords, selectFoundWords } from '../../reducers/gridSlice';
 import styles from './WordList.module.scss';
 
 export default function WordList() {
-    const dispatch = useDispatch();
     const isInitialMount = useRef(true);
     const foundWords = useSelector(selectFoundWords);
     const words = useSelector(selectWords);

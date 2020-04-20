@@ -94,7 +94,7 @@ function checkIfFound(wordInfo){
     let newList = {...wordList};
     for(let word in newList) {
         let {first, last} = newList[word];
-        if(firstChar === first && lastChar === last) {
+        if( newList[word].found === 'false' && firstChar === first && lastChar === last) {
             newList[word] = {...newList[word], found: 'true'};
             dispatch(setWords(newList));
             dispatch(incrementFound());

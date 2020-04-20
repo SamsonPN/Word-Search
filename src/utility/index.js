@@ -10,12 +10,8 @@ function createWordSearch(words) {
         positions = newInfo.positions;
         wordList = newInfo.wordList;
     })
-    // return {
-    //     grid: fillGrid(grid), 
-    //     wordList
-    // };
     return {
-        grid, 
+        grid: fillGrid(grid), 
         wordList
     };
 }
