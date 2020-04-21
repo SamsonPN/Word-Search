@@ -43,17 +43,17 @@ export const gridSlice = createSlice({
 /* THUNKS */
 export const fetchWords = () => (dispatch, getState) => {
     let currentGrid = getState().grid.grid;
-    if( currentGrid.length === 0) {
-        fetch(`https://api.wordnik.com/v4/words.json/randomWords?hasDictionaryDef=true&minLength=3&maxLength=13&limit=20&api_key=${key}`)
-            .then(res => res.json())
-            .then(fetchedWords => {
-                let words = fetchedWords.map(word => word.word).sort((a, b) => b.length - a.length);
-                words = removeSymbols(words);
-                let {grid, wordList} = createWordSearch(words);
-                dispatch(setGrid(grid));
-                dispatch(setWords(wordList));
-            })
-    }
+    // if( currentGrid.length === 0) {
+    //     fetch(`https://api.wordnik.com/v4/words.json/randomWords?hasDictionaryDef=true&minLength=3&maxLength=13&limit=20&api_key=${key}`)
+    //         .then(res => res.json())
+    //         .then(fetchedWords => {
+    //             let words = fetchedWords.map(word => word.word).sort((a, b) => b.length - a.length);
+    //             words = removeSymbols(words);
+    //             let {grid, wordList} = createWordSearch(words);
+    //             dispatch(setGrid(grid));
+    //             dispatch(setWords(wordList));
+    //         })
+    // }
 };
 
 export const makePuzzle = words => dispatch => {
