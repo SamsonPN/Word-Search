@@ -1,1 +1,1 @@
-export { default } from './solver.jsx';
+export { default } from './Solver.jsx';

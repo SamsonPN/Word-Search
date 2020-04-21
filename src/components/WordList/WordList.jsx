@@ -23,12 +23,13 @@ export default function WordList() {
         }
     })
     let wordList = Object.keys(words).map(word => (
-        <p
+        <a
             id={word}
             key={word}
+            href={`https://www.wordnik.com/words/${word}`}
             found={words[word].found}>
             {word}
-        </p>
+        </a>
     ))
     
     return (

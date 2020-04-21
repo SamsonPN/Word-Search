@@ -18,8 +18,8 @@
                 transform: rotate(-180deg);
             }
         }
-        > a > span {
-                display: inline;
+        > .link > span {
+            display: inline;
         }
     }
 }
@@ -36,12 +36,11 @@
     > span {
         display: none;
         margin-left: 1rem;
-        white-space: nowrap;
+        white-space: nowrap; //remove this if the word starts showing then take this out
         font: {
             family: var(--secondary-font);
             size: 1.15em;
         }
-        transition: var(--transition-speed);
     }
     &:hover {
         background-color: #150873;
@@ -77,4 +76,12 @@
     min-width: 3rem;
     margin: 0 2rem;
     transition: var(--transition-speed);
+}
+
+.attribution {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto auto 10px auto;
 }

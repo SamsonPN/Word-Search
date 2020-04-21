@@ -7,3 +7,8 @@ html, body {
   padding: 0;
   box-sizing: border-box;
 }
+
+textarea, input, button, select { 
+  font-family: inherit; 
+  font-size: inherit; 
+}

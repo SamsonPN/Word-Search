@@ -3,16 +3,21 @@
     flex-direction: column;
     flex-wrap: wrap;
     padding: 0px 10px;
-    > p {
+    > a {
+        padding: 5px;
+        text-decoration: none;
+        color: black;
         font: {
             size: 1.35em;
             family: var(--secondary-font);
             weight: 300;
             style: italic;
         }
-        padding: 5px;
         &[found="true"] {
             text-decoration: line-through;
+        }
+        &:hover {
+            text-decoration: underline;
         }
     }
 }

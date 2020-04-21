@@ -1,1 +1,1 @@
-export { default } from './maker.jsx';
+export { default } from './Maker.jsx';

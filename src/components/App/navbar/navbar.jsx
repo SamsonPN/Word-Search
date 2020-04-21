@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import styles from './navbar.module.scss';
-import { Arrow, Home, Write, Solver } from '../../../assets';
+import { Arrow, Home, Write, Solver, Badge } from '../../../assets';
 
 export default function navbar() {
     return (
@@ -44,6 +44,14 @@ export default function navbar() {
                     alt="Solver"/>
                 <span>Puzzle Solver</span>
             </Link>
+            <a
+                className={styles.attribution}
+                href="https://www.wordnik.com/"
+                title="Go to Wordnik.com">
+                <img 
+                    src={Badge} 
+                    alt="Powered by Wordnik <3"/>
+            </a>
         </div>
     )
 }

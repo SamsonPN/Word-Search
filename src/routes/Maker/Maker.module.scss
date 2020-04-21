@@ -1,0 +1,67 @@
+$componentWidth: 90%;
+$borderRadius: 2.5px;
+
+.maker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+}
+
+.directions {
+    width: $componentWidth;
+    margin-top: 10px;
+    flex: 1;
+    font: {
+        family: var(--secondary-font);
+        weight: 300;
+        style: italic;
+        size: 1.5em;
+    }
+    > h1 {
+        margin-bottom: 5px;
+    }
+}
+
+.inputWrapper {
+    width: $componentWidth;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    gap: 0px 25px;
+    flex: 3;
+    > textarea {
+        overflow-y: hidden;
+        resize: none;
+        outline: none;
+        width: 100%;
+        border-radius: $borderRadius;
+        white-space: nowrap;
+        font: {
+            family: var(--primary-font);
+            size: 2em;
+        }
+    }
+}
+
+.btnWrapper {
+    width: $componentWidth;
+    display: flex;
+    align-items: center;
+    flex: 1;
+    > button {
+        padding: 5px;
+        background-color: var(--primary-color);
+        color: white;
+        border-radius: $borderRadius;
+        cursor: pointer;
+        font: {
+            family: var(--secondary-font);
+            size: 2em;
+        }
+        &:hover {
+            opacity: 0.9;
+        }
+    }
+}

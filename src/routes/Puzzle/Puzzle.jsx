@@ -1,12 +1,12 @@
 import React from 'react';
 import Grid from '../../components/Grid';
 import WordList from '../../components/WordList';
-import styles from './Home.module.scss';
+import styles from './Puzzle.module.scss';
 
-export default function Home() {
+export default function Puzzle() {
     return (
-        <div className={styles.home}>
-            <div className={styles.gridWrapper}>
+        <div className={styles.puzzle}>
+            <div>
                 <Grid />
                 <WordList />
             </div>

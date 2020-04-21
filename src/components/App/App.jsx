@@ -1,9 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Home from '../../routes/home';
-import Maker from '../../routes/maker';
-import Solver from '../../routes/solver';
 import Navbar from './navbar';
+import Home from '../../routes/Home';
+import Maker from '../../routes/Maker';
+import Solver from '../../routes/Solver';
+import Puzzle from '../../routes/Puzzle';
 import './App.scss';
 
 function App() {
@@ -20,6 +21,9 @@ function App() {
             </Route>
             <Route exact path="/solver">
               <Solver />
+            </Route>
+            <Route exact path="/puzzle">
+              <Puzzle />
             </Route>
           </div>
         </div>

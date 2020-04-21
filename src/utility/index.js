@@ -1,4 +1,4 @@
-function createWordSearch(words) {
+export function createWordSearch(words) {
     const size = 15;
     let grid = new Array(size * size).fill('_');
     let dirs = [[0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0], [-1, 1]];
@@ -121,5 +121,10 @@ function isWithinGrid(row, col, size) {
     return (row >= 0 && row < size) && (col >= 0 && col < size);
 } 
 
-
-export default createWordSearch;
+export function removeSymbols(words) {
+    let regex = /[^A-Za-z]/gi;
+    words.forEach((word, i) => {
+        words[i] = word.replace(regex,"").toUpperCase();
+    })
+    return words;
+}
