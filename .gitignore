@@ -13,7 +13,7 @@
 /build
 
 # keys
-src/keys.js
+src/test.js
 
 # misc
 .DS_Store
