@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { createWordSearch, removeSymbols } from '../utility';
-import { key } from '../key';
+// import { key } from '../key';
 
 export const gridSlice = createSlice({
     name: 'grid',
@@ -38,11 +38,11 @@ export const gridSlice = createSlice({
 });
 
 
-// const wordExample = ['scold', 'shaggy', 'admit', 'witty', 'substantial', 'tense', 'weary', 'tender', 'occur', 'dress','i am gr$$00oot', 'raise','multimedia','acknowledge','honey','wallace','internship','ABARTICULATIO','articulated','samsonnguyen'];
+const wordExample = ['scold', 'shaggy', 'admit', 'witty', 'substantial', 'tense', 'weary', 'tender', 'occur', 'dress','i am gr$$00oot', 'raise','multimedia','acknowledge','honey','wallace','internship','ABARTICULATIO','articulated','samsonnguyen'];
 
 /* THUNKS */
 export const fetchWords = () => (dispatch, getState) => {
-    let currentGrid = getState().grid.grid;
+    // let currentGrid = getState().grid.grid;
     // if( currentGrid.length === 0) {
     //     fetch(`https://api.wordnik.com/v4/words.json/randomWords?hasDictionaryDef=true&minLength=3&maxLength=13&limit=20&api_key=${key}`)
     //         .then(res => res.json())
@@ -54,6 +54,12 @@ export const fetchWords = () => (dispatch, getState) => {
     //             dispatch(setWords(wordList));
     //         })
     // }
+    let words = wordExample.sort((a, b) => b.length - a.length);
+    words = removeSymbols(words);
+    let {grid, wordList} = createWordSearch(words);
+    dispatch(setGrid(grid));
+    dispatch(setWords(wordList));
+
 };
 
 export const makePuzzle = words => dispatch => {
