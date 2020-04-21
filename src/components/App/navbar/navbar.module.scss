@@ -1,9 +1,10 @@
 .navbar {
+    width: 7.5rem;
+    height: 100vh;
     position: fixed;
     display: flex;
     flex-direction: column;
-    width: 7.5rem;
-    height: 100vh;
+    z-index: 10;
     background-color: var(--primary-color);
     transition: var(--transition-speed);
     &:hover {

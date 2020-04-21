@@ -4,15 +4,16 @@
   --primary-color: #1F0CAD;
   --highlight-color: lightblue;
   --transition-speed: 0.5s;
+  --border-radius: 0.25rem;
 }
 
 #App {
   min-height: 100vh;
-  min-width: 100%;
+  width: 100%;
   display: flex;
   justify-content: flex-start;
   > .routes {
-    width: 100%;
+    width: calc(100% - 7.5rem);
     margin-left: 7.5rem;
   }
 }
