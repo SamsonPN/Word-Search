@@ -149,7 +149,7 @@ export default function Grid() {
         <div
             className={styles.gridCell}
             id={i}
-            key={i}
+            key={letter + i}
             onMouseDown={(e) => {
                 e.preventDefault();
                 dispatch(setFirstChar(i))

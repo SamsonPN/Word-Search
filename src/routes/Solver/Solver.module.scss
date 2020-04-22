@@ -22,6 +22,10 @@ $componentWidth: 90%;
         list-style-position: inside;
         > li {
             margin-bottom: 5px;
+            > ul {
+                list-style-position: inside;
+                margin-left: 1.75rem;
+            }
         }
     }
     > h1 {
@@ -33,13 +37,13 @@ $componentWidth: 90%;
     width: $componentWidth;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 2rem;
     > textarea {
         resize: none;
         outline: none;
         width: 75%;
         text-align: center;
         font-size: 2em;
-        margin-left: 10px;
         border-radius: var(--border-radius);
         font: {
             family: var(--secondary-font);
@@ -52,10 +56,35 @@ $componentWidth: 90%;
 
 .wordList {
     width: $componentWidth;
+    > p {
+        margin-bottom: 1rem;
+    }
     > textarea {
         resize: none;
         outline: none;
         width: 100%;
         border-radius: var(--border-radius);
+    }
+}
+
+
+.btnWrapper {
+    width: $componentWidth;
+    display: flex;
+    > button {
+        border-radius: var(--border-radius);
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        padding: 0px 4rem;
+        background-color: var(--primary-color);
+        color: white;
+        cursor: pointer;
+        font: {
+            family: var(--secondary-font);
+            size: 1.5em;
+        }
+        &:hover {
+            opacity: 0.8;
+        }
     }
 }

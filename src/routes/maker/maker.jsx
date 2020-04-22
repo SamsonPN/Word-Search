@@ -66,7 +66,7 @@ export default function Maker() {
     return (
         <div className={styles.maker}>
             <div className={styles.directions}>
-                <h1>Getting Started:</h1>
+                <h1>Puzzle Maker:</h1>
                 <p>
                     Please enter between 10 - 20 words to create a word search.
                     Each word should be between 3 - 13 letters in length and should not contain any

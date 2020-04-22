@@ -4,11 +4,15 @@ import { createSlice } from '@reduxjs/toolkit';
 export const solverSlice = createSlice({
     name: 'solver',
     initialState: {
+        grid: [],
         words: [],
-        rows: 0,
-        cols: 0
+        rows: 3,
+        cols: 3
     },
     reducers: {
+        setGrid: (state, action) => {
+            state.grid = action.payload;
+        },
         setWords: (state, action) => {
             state.words = action.payload;
         },
@@ -22,9 +26,10 @@ export const solverSlice = createSlice({
 })
 
 /* ACTIONS */
-export const { setWords, setRows, setCols } = solverSlice.actions;
+export const { setGrid, setWords, setRows, setCols } = solverSlice.actions;
 
 /* SELECTORS */
+export const selectGrid = state => state.solver.grid;
 export const selectWords = state => state.solver.words;
 export const selectRows = state => state.solver.rows;
 export const selectCols = state => state.solver.cols;

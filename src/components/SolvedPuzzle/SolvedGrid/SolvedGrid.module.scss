@@ -1,0 +1,26 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat( var(--columns), 1fr);
+}
+
+.gridCell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    transition: background 0.25s cubic-bezier(0.1, 0.7, 1.0, 0.1);
+    font: {
+        family: var(--primary-font);
+        weight: 700;
+        size: 1.5em;
+    }
+    &[highlighted="true"] {
+        /* 
+            !important is used to override inline styles for the gridCells 
+            when highlighting only!
+        */
+        background: yellow !important;
+    }
+}

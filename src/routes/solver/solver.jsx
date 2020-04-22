@@ -1,5 +1,6 @@
 import React from 'react';
-import Grid from '../../components/SolvedGrid';
+import Grid from '../../components/SolverInput';
+import Puzzle from '../../components/SolvedPuzzle';
 import { useDispatch } from 'react-redux';
 import { 
     setWords,
@@ -9,13 +10,22 @@ import {
 import styles from './Solver.module.scss';
 
 function checkNum(e, type, dispatch) {
-    let num = parseInt(e.target.value);
-    if( isNaN(num) ) {
+    let { value } = e.target;
+    let num = parseInt(value);
+    if( isNaN(num) && value !== "") {
         alert("Please enter a number!");
         e.target.value = "";
         return;
     }
-    
+    else if (num < 1 || num > 20) {
+        alert("Your grid is either too small or too large!")
+    }
+    else if (value !== "") {
+        setValues(num, type, dispatch)
+    }
+}
+
+function setValues(num, type, dispatch) {
     if(type === 'rows') {
         dispatch(setRows(num));
     }
@@ -49,11 +59,14 @@ export default function Solver() {
         <div className={styles.solver}>
 
             <div className={styles.directions}>
-                <h1>Getting Started:</h1>
+                <h1>Puzzle Solver:</h1>
                 <ol>
                     <li>
-                        Enter in the size of the grid below. 
-                        Max size is 20 x 20
+                        Enter in the size of the grid below.
+                        <ul>
+                            <li>Default size: 3 x 3</li>
+                            <li>Max size: 20 x 20</li>
+                        </ul> 
                     </li>
                     <li>
                         After the grid is generated, enter in the 
@@ -73,14 +86,14 @@ export default function Solver() {
                     cols="1" 
                     rows="1"
                     placeholder="Rows"
-                    maxLength="1"
+                    maxLength="2"
                     onBlur={(e) => checkNum(e, 'rows', dispatch)}>
                 </textarea>
                 <textarea 
                     cols="1" 
                     rows="1"
                     placeholder="Columns"
-                    maxLength="1"
+                    maxLength="2"
                     onBlur={(e) => checkNum(e,'cols', dispatch)}>
                 </textarea>
             </div>
@@ -89,21 +102,24 @@ export default function Solver() {
 
             <div className={styles.wordList}>
                 <p>
-                Please separate your words by a comma or else they will not be 
-                read properly! And do remember to remove any symbols or numbers as well. 
+                    Please separate your words by a comma or else they will not be 
+                    read properly! And do remember to remove any symbols or numbers as well. 
                 </p>
                 <textarea
                     id="wordList"
+                    rows="5"
                     placeholder="Separate, your, words, like, this">
                 </textarea>
             </div>
 
-            <div>
+            <div className={styles.btnWrapper}>
                 <button
                     onClick={() => checkWords(dispatch)}>
                     Solve
                 </button>
             </div>
+
+            <Puzzle />
         </div>
     )
 }
