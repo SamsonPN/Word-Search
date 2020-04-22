@@ -33,6 +33,7 @@ function findPos(gridInfo) {
     
     while(true) {
         if(posCopy.length === 0) {
+            delete wordList[word];
             break;
         }
         let pos = shuffle(posCopy).pop();

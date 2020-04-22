@@ -70,7 +70,8 @@ export default function Maker() {
                 <p>
                     Please enter between 10 - 20 words to create a word search.
                     Each word should be between 3 - 13 letters in length and should not contain any
-                    symbols or numbers!
+                    symbols or numbers! In some cases, every word might not fit in the grid and thus will
+                    be removed!
                 </p>
             </div>
             <div className={styles.inputWrapper}>
