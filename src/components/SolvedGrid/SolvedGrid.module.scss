@@ -10,17 +10,14 @@
     text-align: center;
     padding: 10px;
     cursor: pointer;
-    transition: background 0.15s cubic-bezier(0.1, 0.7, 1.0, 0.1);
+    transition: all 0.5s ease-in-out;
     font: {
         family: var(--primary-font);
         weight: 700;
         size: 1.5em;
     }
     &[highlighted="true"] {
-        /* 
-            !important is used to override inline styles for the gridCells 
-            when highlighting only!
-        */
-        background: yellow !important;
+        border-radius: 2rem;
+        color: white;
     }
 }

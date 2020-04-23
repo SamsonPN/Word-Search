@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { selectWords, selectRows } from '../../reducers/solverSlice';
-import styles from './SolvedWords.module.scss';
+import { highlightWord, clearHighlights } from '../../utility';
 import randomColor from 'randomcolor';
+import styles from './SolvedWords.module.scss';
 
 function colorGridWords(wordList, size) {
     for(let word in wordList) {
@@ -27,32 +28,11 @@ function addColor(wordInfo) {
         let words = JSON.parse(element.getAttribute('words'));
         words.push(word);
         element.setAttribute('words', JSON.stringify(words));
-        // console.log(element.getAttribute('words'));
         row += dRow;
         col += dCol;
     }
     document.getElementById(word).style.color = color;
 }
-
-function highlightWord(wordInfo) {
-    clearHighlights();
-    let { first, dir, word, size } = wordInfo;
-    let [row, col] = first;
-    let [dRow, dCol] = dir;
-    for(let i = 0; i < word.length; i++) {
-        let pos = (row * size) + col;
-        document.getElementById(`cell${pos}`).setAttribute('highlighted', true);
-        row += dRow;
-        col += dCol;
-    }
-}
-
-function clearHighlights() {
-    [...document.getElementsByClassName('gridCell')].forEach(cell => {
-        cell.removeAttribute('highlighted');
-    })
-}
-
 
 export default function SolvedWords() {
     const wordList = useSelector(selectWords);
@@ -60,15 +40,18 @@ export default function SolvedWords() {
     const words = Object.keys(wordList).map(word => (
         <p
         id={word}
+        className="solvedWords"
         key={word}
         onMouseOver={() => highlightWord({...wordList[word], word, size})}
         onMouseLeave={() => clearHighlights()}>
             {word}
         </p>
     ));
-    setTimeout(() => {
+
+    useEffect(() => {
         colorGridWords(wordList, size);
-    }, 250);
+    }, [wordList, size])
+
     return (
         <div className={styles.wordList}>
             {words}

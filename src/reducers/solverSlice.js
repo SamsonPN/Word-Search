@@ -5,19 +5,23 @@ export const solverSlice = createSlice({
     name: 'solver',
     initialState: {
         grid: [
-            'D', 'Q', 'C', 'Z', 'X', 'G', 'C', 'W',
-            'J', 'M', 'H', 'W', 'C', 'V', 'I', 'G',
-            'G', 'U', 'S', 'N', 'F', 'X', 'U', 'H',
-            'U', 'X', 'E', 'S', 'Y', 'B', 'Z', 'E',
-            'D', 'A', 'H', 'Z', 'H', 'E', 'R', 'S',
-            'I', 'E', 'S', 'A', 'M', 'W', 'S', 'Q',
-            'A'
+            'H', 'O', 'F', 'S', 'W', 'W', 'X', 'L',
+            'V', 'J', 'I', 'Z', 'P', 'S', 'N', 'L',
+            'K', 'H', 'A', 'W', 'H', 'S', 'A', 'M',
+            'A', 'H', 'U', 'C', 'R', 'Y', 'C', 'L',
+            'A', 'M', 'L', 'E', 'U', 'X', 'T', 'A',
+            'E', 'A', 'H', 'G', 'V', 'S', 'Q', 'P',
+            'N'
           ],
         words: {
-            GUY: { first: [ 2, 2 ], last: [ 4, 0 ], dir: [ 1, -1 ] },
-            HIS: { first: [ 4, 6 ], last: [ 6, 4 ], dir: [ 1, -1 ] },
-            HERS: { first: [ 5, 1 ], last: [ 5, 4 ], dir: [ 0, 1 ] },
-            SAM: { first: [ 6, 0 ], last: [ 6, 2 ], dir: [ 0, 1 ] }
+            GUY: { first: [ 6, 1 ], last: [ 4, 1 ], dir: [ -1, 0 ] },
+            HIS: { first: [ 2, 3 ], last: [ 0, 3 ], dir: [ -1, 0 ] },
+            HERS: { first: [ 6, 0 ], last: [ 3, 0 ], dir: [ -1, 0 ] },
+            SAM: { first: [ 6, 3 ], last: [ 4, 5 ], dir: [ -1, 1 ] },
+            HAM: { first: [ 3, 4 ], last: [ 3, 2 ], dir: [ 0, -1 ] },
+            CLAM: { first: [ 4, 2 ], last: [ 4, 5 ], dir: [ 0, 1 ] },
+            CAN: { first: [ 4, 2 ], last: [ 2, 0 ], dir: [ -1, -1 ] },
+            CLAN: { first: [ 3, 6 ], last: [ 6, 6 ], dir: [ 1, 0 ] }
           },
         rows: 7,
         cols: 7

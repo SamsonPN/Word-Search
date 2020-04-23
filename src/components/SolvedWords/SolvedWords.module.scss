@@ -7,13 +7,14 @@
         padding: 5px;
         color: black;
         cursor: pointer;
+        transition: 0.5s;
         font: {
             size: 1.35em;
             family: var(--secondary-font);
             weight: 300;
             style: italic;
         }
-        &:hover {
+        &:hover, &[highlighted="true"] {
             text-decoration: underline;
         }
     }
