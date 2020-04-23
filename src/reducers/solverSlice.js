@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-// import { removeSymbols } from '../utility';
+import { removeSymbols, solveWordSearch } from '../utility';
 
 export const solverSlice = createSlice({
     name: 'solver',
@@ -24,6 +24,17 @@ export const solverSlice = createSlice({
         },
     }
 })
+
+/* THUNKS */
+export const solvePuzzle = words => (dispatch, getState) => {
+    const rows = getState().solver.rows;
+    const cols = getState().solver.cols;
+    const grid = getState().solver.grid;
+    words = removeSymbols(words);
+    let wordList = solveWordSearch(grid, words, [rows, cols]);
+    console.log({wordList});
+    dispatch(setWords(wordList));
+}
 
 /* ACTIONS */
 export const { setGrid, setWords, setRows, setCols } = solverSlice.actions;

@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import {
     selectGrid
-} from '../../../reducers/solverSlice';
+} from '../../reducers/solverSlice';
 import styles from './SolvedGrid.module.scss';
 
 export default function SolvedGrid() {

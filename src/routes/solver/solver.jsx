@@ -1,12 +1,12 @@
 import React from 'react';
-import Grid from '../../components/SolverInput';
-import Puzzle from '../../components/SolvedPuzzle';
+import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { 
-    setWords,
     setRows,
-    setCols
- } from '../../reducers/solverSlice';
+    setCols,
+    solvePuzzle
+} from '../../reducers/solverSlice';
+import Grid from '../../components/SolverInput';
 import styles from './Solver.module.scss';
 
 function checkNum(e, type, dispatch) {
@@ -34,7 +34,7 @@ function setValues(num, type, dispatch) {
     }
 }
 
-function checkWords(dispatch) {
+function checkWords(e, dispatch) {
     const regex = /[^A-Za-z\s]/g;
     let wordList = document.getElementById('wordList').value;
     if(wordList.length !== 0) {
@@ -43,13 +43,15 @@ function checkWords(dispatch) {
             let word = wordList[i];
             if( word.match(regex) ) {
                 alert(`Please remove symbols or letters from: ${word}`)
+                e.preventDefault();
                 break;
             }
         }
-        dispatch( setWords(wordList) );
+        dispatch( solvePuzzle(wordList) );
     }
     else {
-        alert('Please enter some words to get started!')
+        alert('Please enter some words to get started!');
+        e.preventDefault();
     }
 }
 
@@ -113,13 +115,13 @@ export default function Solver() {
             </div>
 
             <div className={styles.btnWrapper}>
-                <button
-                    onClick={() => checkWords(dispatch)}>
+                <Link
+                    to="/results"
+                    onClick={(e) => checkWords(e, dispatch)}>
                     Solve
-                </button>
+                </Link>
             </div>
 
-            <Puzzle />
         </div>
     )
 }

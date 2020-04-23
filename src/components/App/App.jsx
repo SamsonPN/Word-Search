@@ -5,6 +5,7 @@ import Home from '../../routes/Home';
 import Maker from '../../routes/Maker';
 import Solver from '../../routes/Solver';
 import Puzzle from '../../routes/Puzzle';
+import Results from '../../routes/Results';
 import './App.scss';
 
 function App() {
@@ -30,6 +31,10 @@ function App() {
 
             <Route exact path="/puzzle">
               <Puzzle />
+            </Route>
+
+            <Route exact path="/results">
+              <Results />
             </Route>
             
           </div>

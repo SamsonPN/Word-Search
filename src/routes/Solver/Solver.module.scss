@@ -71,12 +71,13 @@ $componentWidth: 90%;
 .btnWrapper {
     width: $componentWidth;
     display: flex;
-    > button {
+    > a {
         border-radius: var(--border-radius);
         margin-top: 2rem;
         margin-bottom: 2rem;
         padding: 0px 4rem;
         background-color: var(--primary-color);
+        text-decoration: none;
         color: white;
         cursor: pointer;
         font: {

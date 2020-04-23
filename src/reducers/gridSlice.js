@@ -57,9 +57,9 @@ export const fetchWords = () => (dispatch, getState) => {
     // let words = wordExample.sort((a, b) => b.length - a.length);
     // words = removeSymbols(words);
     // let {grid, wordList} = createWordSearch(words);
+    // console.log({grid, wordList})
     // dispatch(setGrid(grid));
     // dispatch(setWords(wordList));
-
 };
 
 export const makePuzzle = words => dispatch => {
