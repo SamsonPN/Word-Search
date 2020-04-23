@@ -5,9 +5,11 @@ import styles from './Results.module.scss';
 
 export default function Results() {
     return (
-        <div className={styles.solved}>
-            <Grid />
-            <Words />
+        <div className={styles.results}>
+            <div className={styles.gridWrapper}>
+                <Grid />
+                <Words />
+            </div>
         </div>
     )
 }

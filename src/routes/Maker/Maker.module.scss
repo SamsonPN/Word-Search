@@ -1,11 +1,11 @@
 $componentWidth: 90%;
 
 .maker {
+    height: 100vh;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
-    width: 100%;
 }
 
 .directions {
