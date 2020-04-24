@@ -9,6 +9,8 @@ html, body {
 }
 
 textarea, input, button, select { 
+  resize: none;
+  outline: none;
   font-family: inherit; 
   font-size: inherit;
 }

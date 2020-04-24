@@ -98,7 +98,7 @@ function insertWord(wordInfo) {
                     }
                     row += dRow;
                     col += dCol;
-                    if( !isWithinGrid(row, col, size, size) ) {
+                    if( !isWithinGrid(row, col, size) ) {
                         break;
                     }
                     newPos = (row * size) + col;
@@ -115,11 +115,11 @@ function wordCanFit(wordInfo){
     let len = word.length - 1;
     row += (dRow * len);
     col += (dCol * len);
-    return isWithinGrid(row, col, size, size);
+    return isWithinGrid(row, col, size);
 }
 
- function isWithinGrid(row, col, rowSize, colSize) {
-    return (row >= 0 && row < rowSize) && (col >= 0 && col < colSize);
+ function isWithinGrid(row, col, size) {
+    return (row >= 0 && row < size) && (col >= 0 && col < size);
 }
 
 export { createWordSearch, isWithinGrid };

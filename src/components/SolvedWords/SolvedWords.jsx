@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { selectWords, selectRows } from '../../reducers/solverSlice';
+import { selectWords, selectSize } from '../../reducers/solverSlice';
 import { highlightWord, clearHighlights } from '../../utility';
 import randomColor from 'randomcolor';
 import styles from './SolvedWords.module.scss';
@@ -36,14 +36,14 @@ function addColor(wordInfo) {
 
 export default function SolvedWords() {
     const wordList = useSelector(selectWords);
-    const size = useSelector(selectRows);
+    const size = useSelector(selectSize);
     const words = Object.keys(wordList).map(word => (
         <p
-        id={word}
-        className="solvedWords"
-        key={word}
-        onMouseOver={() => highlightWord({...wordList[word], word, size})}
-        onMouseLeave={() => clearHighlights()}>
+            id={word}
+            className="solvedWords"
+            key={word}
+            onMouseOver={() => highlightWord({...wordList[word], word, size})}
+            onMouseLeave={() => clearHighlights()}>
             {word}
         </p>
     ));

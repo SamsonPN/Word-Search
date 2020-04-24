@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import {
     selectGrid,
     selectWords,
-    selectRows
+    selectSize
 } from '../../reducers/solverSlice';
 import { highlightWord, clearHighlights } from '../../utility';
 import styles from './SolvedGrid.module.scss';
@@ -19,7 +19,7 @@ function getWordInfo(e, wordList, size) {
 export default function SolvedGrid() {
     const grid = useSelector(selectGrid);
     const wordList = useSelector(selectWords);
-    const size = useSelector(selectRows);
+    const size = useSelector(selectSize);
     const gridCells = grid.map((letter, i) => (
         <div
             id={`cell${i}`}

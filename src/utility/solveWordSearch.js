@@ -12,10 +12,9 @@ export function solveWordSearch(wordsearch, words, size) {
 
 function trackLetterPos(wordsearch, size) {
     let positions = {};
-    let [rowSize, colSize] = size;
     wordsearch.forEach((letter, i) => {
-        let row = Math.trunc(i / rowSize);
-        let col = i % colSize;
+        let row = Math.trunc(i / size);
+        let col = i % size;
         if(positions[letter] == null) {
             positions[letter] = {
                 [i]: [row, col]
@@ -31,6 +30,7 @@ function trackLetterPos(wordsearch, size) {
 function findWord(wordInfo) {
     let {word, wordList, positions} = wordInfo;
     let firstLetter = positions[word[0]];
+    // for every occurence of the first letter in the list
     for (let pos in firstLetter) {
         let firstPos = firstLetter[pos];
         wordList = checkDirection({...wordInfo, firstPos})
@@ -38,22 +38,26 @@ function findWord(wordInfo) {
     return wordList;
 }
 
+// checks in all 8 directions
 function checkDirection(wordInfo) {
     let {wordsearch, word, wordList, positions, size, firstPos} = wordInfo;
     let wLen = word.length - 1;
     let lastPositions = positions[word[wLen]];
-    let [rowSize, colSize] = size;
+    // for each direction
     for(let i = 0; i < dirs.length; i++) {
         let direction = dirs[i];
         let [dRow, dCol] = direction;
         let [row, col] = firstPos;
         row += (dRow * wLen);
         col += (dCol * wLen);
-        if( isWithinGrid(row, col, rowSize, colSize) ) {
-            let lastPos = (row * rowSize) + col;
+        
+        if( isWithinGrid(row, col, size) ) {
+            let lastPos = (row * size) + col;
+            
             if ( lastPositions[lastPos] ) {
                 let isFound = checkWord({wordsearch, word, firstPos, direction, size})
                 if ( isFound ) {
+                    console.log('i am here!')
                     wordList[word] = {
                         first: firstPos,
                         last: lastPositions[lastPos],
@@ -72,10 +76,10 @@ function checkWord(wordInfo) {
     let [row, col] = firstPos;
     let [dRow, dCol] = direction;
     let found = true;
-    let rowSize = size[0];
+    
     for(let i = 0; i < word.length; i++) {
         let letter = word[i];
-        let pos = (row * rowSize) + col;
+        let pos = (row * size) + col;
         if(wordsearch[pos] !== letter) {
             found = false;
             break;

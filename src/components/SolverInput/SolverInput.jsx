@@ -2,8 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
     selectGrid,
-    selectRows, 
-    selectCols,
+    selectSize,
     setGrid
 } from '../../reducers/solverSlice';
 import styles from './SolverInput.module.scss';
@@ -19,27 +18,26 @@ function checkLetter(letterInfo) {
         e.target.value = "";
     }
     else {
-        gridCopy[pos] = letter;
+        gridCopy[pos] = letter.toUpperCase();
         dispatch(setGrid(gridCopy));
     }
 }
 
 export default function SolvedGrid() {
-    //onChange dispatch copy of the grid[pos]
     const dispatch = useDispatch();
     const grid = useSelector(selectGrid);
-    const rows = useSelector(selectRows);
-    const cols = useSelector(selectCols);
+    const size = useSelector(selectSize);
 
     useEffect(() => {
-        document.documentElement.style.setProperty('--columns', cols);
+        document.documentElement.style.setProperty('--size', size);
     });
 
     let textareas = [];
-    for(let i = 0; i < rows * cols; i++) {
+    for(let i = 0; i < size * size; i++) {
         textareas.push(
             <textarea
                 key={i}
+                className="gridInput"
                 rows="1"
                 cols="1"
                 maxLength="1"

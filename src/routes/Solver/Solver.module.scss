@@ -35,16 +35,11 @@ $componentWidth: 90%;
 
 .input {
     width: $componentWidth;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
     margin-bottom: 2rem;
     > textarea {
-        resize: none;
-        outline: none;
-        width: 75%;
-        text-align: center;
-        font-size: 2em;
+        width: 50%;
         border-radius: var(--border-radius);
+        text-align: center;
         font: {
             family: var(--secondary-font);
             weight: 300;
@@ -66,7 +61,6 @@ $componentWidth: 90%;
         border-radius: var(--border-radius);
     }
 }
-
 
 .btnWrapper {
     width: $componentWidth;
