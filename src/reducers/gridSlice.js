@@ -10,7 +10,8 @@ export const gridSlice = createSlice({
         highlighted: [],
         words: [],
         color: '',
-        foundWords: 0
+        foundWords: 0,
+        showPuzzle: false
     },
     reducers: {
         setWords: (state, action) => {
@@ -33,6 +34,9 @@ export const gridSlice = createSlice({
         },
         incrementFound: (state) => {
             state.foundWords += 1;
+        },
+        setShowPuzzle: (state, action) => {
+            state.showPuzzle = action.payload;
         }
     }
 });
@@ -57,7 +61,6 @@ export const fetchWords = () => (dispatch, getState) => {
     // let words = wordExample.sort((a, b) => b.length - a.length);
     // words = removeSymbols(words);
     // let {grid, wordList} = createWordSearch(words);
-    // console.log({grid, wordList})
     // dispatch(setGrid(grid));
     // dispatch(setWords(wordList));
 };
@@ -69,8 +72,25 @@ export const makePuzzle = words => dispatch => {
     dispatch(setWords(wordList));
 }
 
+export const resetFoundWords = () => (dispatch, getState) => {
+    let wordCopy = {...getState().grid.words};
+    Object.keys(wordCopy).forEach(word => {
+        let contents = wordCopy[word];
+        wordCopy[word] = {...contents, found: "false"}
+    })
+    dispatch(setWords(wordCopy)); 
+}
+
 /* ACTIONS */
-export const { setGrid, setWords, setFirstChar, setHighlighted, setColor, incrementFound } = gridSlice.actions;
+export const { 
+    setGrid, 
+    setWords, 
+    setFirstChar, 
+    setHighlighted, 
+    setColor, 
+    incrementFound, 
+    setShowPuzzle 
+} = gridSlice.actions;
 
 
 /* SELECTORS */
@@ -80,6 +100,7 @@ export const selectFirstChar = state => state.grid.firstChar;
 export const selectHighlighted = state => state.grid.highlighted;
 export const selectColor = state => state.grid.color;
 export const selectFoundWords = state => state.grid.foundWords;
+export const selectShowPuzzle = state => state.grid.showPuzzle;
 
 export default gridSlice.reducer;
 

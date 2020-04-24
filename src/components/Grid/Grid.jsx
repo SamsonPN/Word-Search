@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styles from './Grid.module.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-    fetchWords, 
     selectGrid,
     selectFirstChar,
     selectHighlighted,
@@ -12,7 +11,7 @@ import {
     setWords,
     incrementFound
 } from '../../reducers/gridSlice';
-import randomColor from 'randomcolor';
+import { generateRandomColor } from '../../utility';
 
 function canHighlight(firstChar, lastChar) {
     return firstChar !== '' && firstChar !== lastChar;
@@ -124,26 +123,12 @@ function showOnGrid(wordInfo) {
     document.getElementById(word).style.color = color;
 }
 
-function generateRandomColor() {
-    const color = randomColor({
-        luminosity: 'bright',
-        format: 'hsla',
-        alpha: '0.5'
-    })
-    document.documentElement.style.setProperty('--highlight-color', color);
-}
-
 export default function Grid() {
     const dispatch = useDispatch();
     const grid = useSelector(selectGrid);
     const firstChar = useSelector(selectFirstChar);
     const highlighted = useSelector(selectHighlighted);
     const wordList = useSelector(selectWords);
-
-    useEffect(() => {
-        dispatch(fetchWords());
-        generateRandomColor();
-    }, [dispatch]);
 
     const gridCells = grid.map((letter, i) => (
         <div

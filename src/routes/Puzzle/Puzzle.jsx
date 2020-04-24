@@ -1,5 +1,7 @@
-import React, { useRef } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
+import { selectShowPuzzle, setShowPuzzle } from '../../reducers/gridSlice';
 import Grid from '../../components/Grid';
 import WordList from '../../components/WordList';
 import styles from './Puzzle.module.scss';
@@ -22,6 +24,19 @@ function printPuzzle(downloadAnchor) {
 
 export default function Puzzle() {
     const downloadAnchor = useRef(null);
+    const showPuzzle = useSelector(selectShowPuzzle);
+    const history = useHistory();
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if( !showPuzzle ) {
+            history.push('/maker');
+        }
+        return () => {
+            dispatch(setShowPuzzle(false));
+        }
+    });
+
     return (
         <div className={styles.puzzle}>
             <h1>Enjoy the word search!</h1>

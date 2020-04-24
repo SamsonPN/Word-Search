@@ -1,3 +1,5 @@
+import randomColor from 'randomcolor';
+
 function highlightWord(wordInfo) {
     let { first, dir, word, size } = wordInfo;
     let [row, col] = first;
@@ -18,4 +20,13 @@ function clearHighlights() {
     })
 }
 
-export {highlightWord, clearHighlights};
+function generateRandomColor() {
+    const color = randomColor({
+        luminosity: 'bright',
+        format: 'hsla',
+        alpha: '0.5'
+    })
+    document.documentElement.style.setProperty('--highlight-color', color);
+}
+
+export {highlightWord, clearHighlights, generateRandomColor};

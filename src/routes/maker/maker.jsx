@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { makePuzzle } from '../../reducers/gridSlice';
+import { makePuzzle, setShowPuzzle } from '../../reducers/gridSlice';
 import styles from './Maker.module.scss';
 
 function generatePuzzle(dispatch, history) {
@@ -24,6 +24,7 @@ function generatePuzzle(dispatch, history) {
     }
     else {
         if( hasValidWords(words) ) {
+            dispatch(setShowPuzzle(true));
             dispatch(makePuzzle(words));
             history.push('/puzzle');
         }

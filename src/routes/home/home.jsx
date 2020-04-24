@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import Grid from '../../components/Grid';
 import WordList from '../../components/WordList';
+import { fetchWords } from '../../reducers/gridSlice';
+import { generateRandomColor } from '../../utility';
 import styles from './Home.module.scss';
 
+
+
 export default function Home() {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchWords());
+        generateRandomColor();
+    })
+    
     return (
         <div className={styles.home}>
             <div className={styles.gridWrapper}>

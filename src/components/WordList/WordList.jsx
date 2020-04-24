@@ -1,12 +1,13 @@
 import React, { useEffect, useRef } from 'react'
-import { useSelector } from 'react-redux';
-import { selectWords, selectFoundWords } from '../../reducers/gridSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectWords, selectFoundWords, resetFoundWords } from '../../reducers/gridSlice';
 import styles from './WordList.module.scss';
 
 export default function WordList() {
     const isInitialMount = useRef(true);
     const foundWords = useSelector(selectFoundWords);
     const words = useSelector(selectWords);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         // used to only run useEffect code on update
@@ -22,6 +23,14 @@ export default function WordList() {
             }
         }
     })
+
+    // for cleanup of wordList only
+    useEffect(() => {
+        return () => {
+            dispatch(resetFoundWords())
+        }
+    }, [dispatch])
+
     let wordList = Object.keys(words).map(word => (
         <a
             id={word}
