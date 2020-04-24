@@ -1,11 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { 
-    setSize,
-    solvePuzzle
-} from '../../reducers/solverSlice';
+import {  setSize, solvePuzzle, setShowResults } from '../../reducers/solverSlice';
 import Grid from '../../components/SolverInput';
+import { preventEnter } from '../../utility';
 import styles from './Solver.module.scss';
 
 function checkNum(e, dispatch) {
@@ -27,10 +25,10 @@ function checkNum(e, dispatch) {
 function checkInput(e, dispatch) {
     let wordList = hasValidWords();
     if( hasFilledCells() && wordList ) {
+        dispatch(setShowResults(true));
         dispatch( solvePuzzle(wordList) );
     }
     else {
-        alert('Please fill in the grid entirely to solve the puzzle!');
         e.preventDefault();
     }
 }
@@ -40,6 +38,7 @@ function hasFilledCells() {
     for(let i = 0; i < gridInput.length; i++) {
         let input = gridInput[i];
         if(input.value === "") {
+            alert('Please fill in the grid entirely to solve the puzzle!');
             return false;
         }
     }
@@ -57,7 +56,6 @@ function hasValidWords() {
                 return;
             }
         }
-        console.log(wordList)
         return wordList;
     }
     else {
@@ -111,7 +109,8 @@ export default function Solver() {
                     rows="1"
                     placeholder="size"
                     maxLength="2"
-                    onBlur={(e) => checkNum(e, dispatch)}>
+                    onBlur={(e) => checkNum(e, dispatch)}
+                    onKeyPress={(e) => preventEnter(e)}>
                 </textarea>
             </div>
 

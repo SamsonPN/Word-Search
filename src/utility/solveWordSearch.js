@@ -57,7 +57,6 @@ function checkDirection(wordInfo) {
             if ( lastPositions[lastPos] ) {
                 let isFound = checkWord({wordsearch, word, firstPos, direction, size})
                 if ( isFound ) {
-                    console.log('i am here!')
                     wordList[word] = {
                         first: firstPos,
                         last: lastPositions[lastPos],

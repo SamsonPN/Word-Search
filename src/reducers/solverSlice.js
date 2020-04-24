@@ -6,7 +6,8 @@ export const solverSlice = createSlice({
     initialState: {
         grid: [],
         words: {},
-        size: 10
+        size: 10,
+        showResults: false
     },
     reducers: {
         setGrid: (state, action) => {
@@ -17,6 +18,9 @@ export const solverSlice = createSlice({
         },
         setSize: (state, action) => {
             state.size = action.payload;
+        },
+        setShowResults: (state, action) => {
+            state.showResults = action.payload;
         }
     }
 })
@@ -31,11 +35,17 @@ export const solvePuzzle = words => (dispatch, getState) => {
 }
 
 /* ACTIONS */
-export const { setGrid, setWords, setSize } = solverSlice.actions;
+export const { 
+    setGrid, 
+    setWords, 
+    setSize,
+    setShowResults
+} = solverSlice.actions;
 
 /* SELECTORS */
 export const selectGrid = state => state.solver.grid;
 export const selectWords = state => state.solver.words;
 export const selectSize = state => state.solver.size;
+export const selectShowResults = state => state.solver.showResults;
 
 export default solverSlice.reducer;

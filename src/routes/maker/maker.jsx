@@ -2,6 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { makePuzzle, setShowPuzzle } from '../../reducers/gridSlice';
+import { preventEnter } from '../../utility';
 import styles from './Maker.module.scss';
 
 function generatePuzzle(dispatch, history) {
@@ -60,7 +61,8 @@ export default function Maker() {
                 maxLength="13"
                 rows="1"
                 cols="1"
-                placeholder={i + 1}>
+                placeholder={i + 1}
+                onKeyPress={(e) => preventEnter(e)}>
             </textarea>
         )
     }
@@ -82,7 +84,7 @@ export default function Maker() {
                 <button 
                     className="generatorBtn"
                     to="/puzzle"
-                    onClick={(e) => generatePuzzle(dispatch, history)}>
+                    onClick={() => generatePuzzle(dispatch, history)}>
                     Generate Wordsearch
                 </button>
             </div>
