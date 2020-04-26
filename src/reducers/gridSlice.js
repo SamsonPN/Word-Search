@@ -11,7 +11,8 @@ export const gridSlice = createSlice({
         words: [],
         color: '',
         foundWords: 0,
-        showPuzzle: false
+        showPuzzle: false,
+        startTime: 0
     },
     reducers: {
         setWords: (state, action) => {
@@ -37,32 +38,40 @@ export const gridSlice = createSlice({
         },
         setShowPuzzle: (state, action) => {
             state.showPuzzle = action.payload;
+        },
+        setStartTime: (state, action) => {
+            state.startTime = action.payload;
         }
     }
 });
 
 
-// const wordExample = ['scold', 'shaggy', 'admit', 'witty', 'substantial', 'tense', 'weary', 'tender', 'occur', 'dress','i am gr$$00oot', 'raise','multimedia','acknowledge','honey','wallace','internship','ABARTICULATIO','articulated','samsonnguyen'];
 
 /* THUNKS */
-export const fetchWords = () => (dispatch, getState) => {
-    let currentGrid = getState().grid.grid;
-    if( currentGrid.length === 0) {
-        fetch(`https://api.wordnik.com/v4/words.json/randomWords?hasDictionaryDef=true&minLength=3&maxLength=13&limit=20&api_key=${key}`)
+
+// export const fetchWords = (newGame) => (dispatch) => {
+//     const wordExample = ['scold', 'shaggy', 'admit', 'witty', 'substantial', 'tense', 'weary', 'tender', 'occur', 'dress','i am gr$$00oot', 'raise','multimedia','acknowledge','honey','wallace','internship','ABARTICULATIO','articulated','samsonnguyen'];
+//     let words = wordExample.sort((a, b) => b.length - a.length);
+//     words = removeSymbols(words);
+//     let {grid, wordList} = createWordSearch(words);
+//     dispatch(setGrid(grid));
+//     dispatch(setWords(wordList));
+// };
+
+export const fetchWords = (newGame) => (dispatch, getState) => {
+    const currentGrid = getState().grid.grid;
+    const limit = Math.trunc( (Math.random() * (20 - 15 + 1)) + 15 );
+    if( currentGrid.length === 0 || newGame) {
+        fetch(`https://api.wordnik.com/v4/words.json/randomWords?hasDictionaryDef=true&minLength=3&maxLength=15&limit=${limit}&api_key=${key}`)
             .then(res => res.json())
             .then(fetchedWords => {
-                let words = fetchedWords.map(word => word.word).sort((a, b) => b.length - a.length);
+                let words = fetchedWords.map(word => word.word);
                 words = removeSymbols(words);
                 let {grid, wordList} = createWordSearch(words);
                 dispatch(setGrid(grid));
                 dispatch(setWords(wordList));
             })
     }
-    // let words = wordExample.sort((a, b) => b.length - a.length);
-    // words = removeSymbols(words);
-    // let {grid, wordList} = createWordSearch(words);
-    // dispatch(setGrid(grid));
-    // dispatch(setWords(wordList));
 };
 
 export const makePuzzle = words => dispatch => {
@@ -89,7 +98,8 @@ export const {
     setHighlighted, 
     setColor, 
     incrementFound, 
-    setShowPuzzle 
+    setShowPuzzle ,
+    setStartTime
 } = gridSlice.actions;
 
 
@@ -101,6 +111,7 @@ export const selectHighlighted = state => state.grid.highlighted;
 export const selectColor = state => state.grid.color;
 export const selectFoundWords = state => state.grid.foundWords;
 export const selectShowPuzzle = state => state.grid.showPuzzle;
+export const selectStartTime = state => state.grid.startTime;
 
 export default gridSlice.reducer;
 

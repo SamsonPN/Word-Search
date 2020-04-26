@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectShowResults, setShowResults } from '../../reducers/solverSlice';
 import { useHistory } from 'react-router-dom';
