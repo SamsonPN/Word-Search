@@ -1,3 +1,5 @@
+@import '../../../assets/sass/mixin.scss';
+
 .navbar {
     width: 7.5rem;
     height: 100vh;
@@ -85,4 +87,27 @@
     flex-direction: column;
     align-items: center;
     margin: auto auto 10px auto;
+}
+
+@include for-desktop-only {
+    .navbar {
+        width: 100%;
+        height: 5rem;
+        bottom: 0;
+        flex-direction: row;
+        align-items: center;
+        > .logo { display: none; }
+        &:hover { 
+            width: 100%; 
+            > .link > span { display: none; }
+        }
+    }
+
+    .link {
+        justify-content: center;
+    }
+
+    .attribution {
+        margin: 0;
+    }
 }

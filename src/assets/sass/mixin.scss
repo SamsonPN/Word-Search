@@ -1,0 +1,29 @@
+@import './global.scss';
+
+// 1024px
+@mixin for-desktop-only {
+    @media only screen and (max-width: $desktop) {
+        @content;
+    }
+}
+
+// 768px
+@mixin for-tablet-only {
+    @media only screen and (max-width: $tablet) {
+        @content;
+    }
+}
+
+// 600px
+@mixin for-tablet-small-only {
+    @media only screen and (max-width: $tablet-small) {
+        @content;
+    }
+}
+
+// 480px
+@mixin for-mobile-only {
+    @media only screen and (max-width: $tablet-small-2) {
+        @content;
+    }
+}

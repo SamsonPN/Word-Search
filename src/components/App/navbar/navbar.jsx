@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import styles from './navbar.module.scss';
-import { Arrow, Home, Write, Solver, Badge } from '../../../assets';
+import { Arrow, Home, Write, Solver, Badge } from '../../../assets/images';
 
 export default function navbar() {
     return (

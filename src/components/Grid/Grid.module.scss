@@ -1,3 +1,5 @@
+@import '../../assets/sass/mixin.scss';
+
 .grid {
     display: grid;
     grid-template-columns: repeat(15, 1fr);
@@ -22,5 +24,23 @@
              because it has a higher specificity than classes and attributes.
         */
         background: var(--highlight-color) !important;
+    }
+}
+
+@include for-desktop-only {
+    .gridCell {
+        font-size: 4vw;
+    }
+}
+
+@include for-tablet-only {
+    .gridCell {
+        font-size: 3.25vw;
+    }
+}
+
+@include for-tablet-small-only {
+    .gridCell {
+        font-size: 2.5vw;
     }
 }

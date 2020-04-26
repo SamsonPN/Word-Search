@@ -1,3 +1,5 @@
+@import '../../assets/sass/mixin.scss';
+
 .wordList {
     display: flex;
     flex-direction: column;
@@ -20,5 +22,33 @@
         &:hover {
             text-decoration: underline;
         }
+    }
+}
+
+@include for-desktop-only {
+    .wordList {
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding-left: 1rem;
+        > a {
+            text-align: center;
+            font-size: 2.5vw;
+            padding: 10px;
+        }
+    }
+}
+
+@include for-tablet-only {
+    .wordList {
+        font-size: 3vw;
+        padding-left: 1.45rem;
+    }
+}
+
+@include for-tablet-small-only {
+    .wordList {
+        font-size: 2.25vw;
+        padding-left: 1.35rem;
     }
 }

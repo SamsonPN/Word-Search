@@ -1,3 +1,5 @@
+@import '../../assets/sass/mixin.scss';
+
 :root {
   --primary-font: 'Montserrat', sans-serif;
   --secondary-font: 'Roboto', sans-serif;
@@ -13,8 +15,18 @@
   width: 100%;
   display: flex;
   justify-content: flex-start;
-  > .routes {
-    width: calc(100% - 7.5rem);
-    margin-left: 7.5rem;
+}
+
+.routes {
+  width: calc(100% - 7.5rem);
+  margin-left: 7.5rem;
+}
+
+
+@include for-desktop-only {
+  .routes {
+    width: 100%;
+    margin-left: 0;
+    margin-bottom: 5.5rem;
   }
 }

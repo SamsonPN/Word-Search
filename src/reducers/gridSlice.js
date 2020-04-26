@@ -62,7 +62,7 @@ export const fetchWords = (newGame) => (dispatch, getState) => {
     const currentGrid = getState().grid.grid;
     const limit = Math.trunc( (Math.random() * (20 - 15 + 1)) + 15 );
     if( currentGrid.length === 0 || newGame) {
-        fetch(`https://api.wordnik.com/v4/words.json/randomWords?hasDictionaryDef=true&minLength=3&maxLength=15&limit=${limit}&api_key=${key}`)
+        fetch(`https://api.wordnik.com/v4/words.json/randomWords?hasDictionaryDef=true&minLength=3&maxLength=10&limit=${limit}&api_key=${key}`)
             .then(res => res.json())
             .then(fetchedWords => {
                 let words = fetchedWords.map(word => word.word);
