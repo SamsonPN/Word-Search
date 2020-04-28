@@ -1,7 +1,8 @@
+@import '../../assets/sass/mixin.scss';
 $componentWidth: 90%;
 
 .maker {
-    height: 100%;
+    height: 100vh;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -11,7 +12,6 @@ $componentWidth: 90%;
 .directions {
     width: $componentWidth;
     margin-top: 10px;
-    flex: 1;
     font: {
         family: var(--secondary-font);
         weight: 300;
@@ -63,5 +63,34 @@ $componentWidth: 90%;
         &:hover {
             opacity: 0.9;
         }
+    }
+}
+
+@include for-mobile-only {
+    .inputWrapper {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .directions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 3.5vw;
+    }
+    .btnWrapper {
+        align-self: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@include for-mobile-height-only {
+    .maker {
+        height: auto;
+    }
+    .inputWrapper {
+        height: 100vh;
+        flex: 0;
     }
 }

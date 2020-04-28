@@ -41,3 +41,9 @@
         @content;
     }
 }
+
+@mixin for-mobile-height-only {
+    @media only screen and (max-height: $mobile) {
+        @content;
+    }
+}
