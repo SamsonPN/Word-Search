@@ -66,6 +66,20 @@ $componentWidth: 90%;
     }
 }
 
+@include for-desktop-large-only {
+    .directions {
+        font-size: 2vw;
+    }
+
+    .inputWrapper > textarea{
+        font-size: 3vw;
+    }
+
+    .btnWrapper > button{
+        font-size: 3vw;
+    }
+}
+
 @include for-mobile-only {
     .inputWrapper {
         grid-template-columns: repeat(3, 1fr);
