@@ -23,6 +23,20 @@
 }
 
 
+@include for-desktop-large-only {
+  .routes {
+    width: calc(100% - 10rem);
+    margin-left: 10rem;
+  }
+}
+
+@include for-desktop-xlarge-only {
+  .routes {
+    width: calc(100% - 15rem);
+    margin-left: 15rem;
+  }
+}
+
 @include for-desktop-only {
   .routes {
     width: 100%;

@@ -1,5 +1,19 @@
 @import './global.scss';
 
+// 2560px
+@mixin for-desktop-xlarge-only {
+    @media only screen and (min-width: $desktop-xlarge) {
+        @content;
+    }
+}
+
+// 1920px
+@mixin for-desktop-large-only {
+    @media only screen and (min-width: $desktop-large) {
+        @content;
+    }
+}
+
 // 1024px
 @mixin for-desktop-only {
     @media only screen and (max-width: $desktop) {
@@ -23,7 +37,7 @@
 
 // 480px
 @mixin for-mobile-only {
-    @media only screen and (max-width: $tablet-small-2) {
+    @media only screen and (max-width: $mobile) {
         @content;
     }
 }
