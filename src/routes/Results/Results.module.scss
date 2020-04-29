@@ -1,3 +1,5 @@
+@import '../../assets/sass/mixin.scss';
+
 .results {
     min-height: 100vh;
     width: 100%;
@@ -11,4 +13,13 @@
     width: 100%;
     display: flex;
     justify-content: center;
+}
+
+@include for-desktop-only {
+    .results {
+        justify-content: flex-start;
+    }
+    .gridWrapper {
+        flex-direction: column;
+    }
 }

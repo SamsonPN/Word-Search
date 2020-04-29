@@ -42,8 +42,99 @@
     }
 }
 
+// 480px height
 @mixin for-mobile-height-only {
     @media only screen and (max-height: $mobile) {
         @content;
+    }
+}
+
+
+// media rules for Grid Component
+@mixin grid-media-queries {
+    @include for-desktop-large-only {
+        .gridCell {
+            font-size: 2vw;
+        }
+    }
+    
+    @include for-desktop-only {
+        .gridCell {
+            font-size: 4vw;
+        }
+    }
+    
+    @include for-tablet-only {
+        .gridCell {
+            font-size: 3.25vw;
+        }
+    }
+    
+    @include for-tablet-small-only {
+        .gridCell {
+            font-size: 2.5vw;
+        }
+    }
+    
+    @include for-mobile-only {
+        .grid {
+            height: 100%;
+        }
+        .gridCell {
+            padding: 2.25px;
+            font-size: 5vw;
+        }
+    }
+}
+
+// media rules for wordList component
+@mixin wordList-media-queries {
+    @include for-desktop-large-only {
+        .wordList {
+            padding: 0 15px;
+            > a, p { font-size: 1.75vw; }
+        }
+    }
+    
+    @include for-desktop-xlarge-only {
+        .wordList {
+            padding: 0 22.5px;
+            > a, p { font-size: 2vw; }
+        }
+    }
+    
+    @include for-desktop-only {
+        .wordList {
+            width: 100%;
+            flex-direction: row;
+            flex-wrap: wrap;
+            padding-left: 1rem;
+            > a, p {
+                text-align: center;
+                font-size: 2.5vw;
+                padding: 10px;
+            }
+        }
+    }
+    
+    @include for-tablet-only {
+        .wordList {
+            font-size: 3vw;
+            padding-left: 1.45rem;
+        }
+    }
+    
+    @include for-tablet-small-only {
+        .wordList {
+            font-size: 2.25vw;
+            padding-left: 1.35rem;
+        }
+    }
+    
+    @include for-mobile-only {
+        .wordList {
+            padding: 0;
+            font-size: 3.5vw;
+        }
     }
 }
