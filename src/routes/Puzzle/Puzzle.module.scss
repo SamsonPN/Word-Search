@@ -1,10 +1,11 @@
+@import '../../assets/sass/mixin.scss';
+
 .puzzle {
     display: flex;
     flex-direction: column;
     margin-left: 10%;
     > h1 {
-        margin: 1rem 0px 0px 5.75rem;
-        margin-bottom: 10px;
+        margin: 1rem 0px 10px 5.75rem;
         font: {
             family: var(--secondary-font);
             weight: 300;
@@ -51,4 +52,60 @@
 
 .playBtn {
     background-color: #0CAD1F;
+}
+
+@include for-desktop-large-only {
+    .puzzle > h1 {
+        font-size: 5vw;
+    }
+
+    .btnWrapper {
+        > button, a {
+            font-size: 3vw;
+        }
+    }
+}
+
+@include for-desktop-only {
+    .puzzle {
+        width: 100%;
+        margin: 0;
+        > h1 {
+            margin-left: 1rem;
+        }
+    }
+
+    .gridWrapper {
+        flex-direction: column;
+        margin: 0;
+    }
+
+    .btnWrapper {
+        margin-left: 1rem;
+    }
+}
+
+@include for-mobile-only {
+    .puzzle {
+        align-items: center;
+        > h1 { 
+            margin-left: 0;
+            text-align: center;
+            font-size: 10vw;
+         }
+    }
+    .btnWrapper {
+        width: 97.5%;
+        margin-left: 0;
+        flex-direction: column;
+        > button, a {
+            width: 100%;
+            text-align: center;
+        }
+    }
+
+    .downloadBtn { 
+        margin-right: 0;
+        margin-bottom: 0.5rem;
+    }
 }
