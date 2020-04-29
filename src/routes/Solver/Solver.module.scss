@@ -1,3 +1,4 @@
+@import '../../assets/sass/mixin.scss';
 $componentWidth: 90%;
 
 .solver {
@@ -80,6 +81,26 @@ $componentWidth: 90%;
         }
         &:hover {
             opacity: 0.8;
+        }
+    }
+}
+
+@include for-desktop-large-only {
+    .directions, 
+    .input, 
+    .wordList,
+    .btnWrapper {
+        font-size: 2vw;
+    }
+}
+
+@include for-mobile-only {
+    .directions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        > ol {
+            margin-left: 0;
         }
     }
 }

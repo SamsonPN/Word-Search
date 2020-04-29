@@ -1,3 +1,5 @@
+@import '../../assets/sass/mixin.scss';
+
 .grid {
     width: 90%;
     display: grid;
@@ -14,6 +16,22 @@
         font: {
             family: var(--primary-font);
             weight: 700;
+        }
+    }
+}
+
+@include for-desktop-large-only {
+    .grid > textarea{
+        font-size: 2vw;
+    }
+}
+
+@include for-mobile-only {
+    .grid {
+        width: 97.5%;
+        gap: 0px;
+        > textarea {
+            font-size: 0.75em;
         }
     }
 }

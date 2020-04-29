@@ -14,8 +14,9 @@ function checkNum(e, dispatch) {
         e.target.value = "";
         return;
     }
-    else if (num < 10 || num > 20) {
-        alert("Your grid is either too small or too large!")
+    else if (num < 10 || num > 15) {
+        alert("Your grid is either too small or too large!");
+        e.target.value = '10';
     }
     else if (value !== "") {
         dispatch(setSize(value));
@@ -87,7 +88,7 @@ export default function Solver() {
                         Enter in the size of the grid below.
                         <ul>
                             <li>Default size: 10 x 10</li>
-                            <li>Max size: 20 x 20</li>
+                            <li>Max size: 15 x 15</li>
                         </ul> 
                     </li>
                     <li>
