@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
-import { selectShowPuzzle, setShowPuzzle } from '../../reducers/gridSlice';
+import { selectPuzzleTitle, selectShowPuzzle, setShowPuzzle } from '../../reducers/gridSlice';
 import Grid from '../../components/Grid';
 import WordList from '../../components/WordList';
 import styles from './Puzzle.module.scss';
@@ -10,7 +10,7 @@ import html2canvas from 'html2canvas';
 function printPuzzle(downloadAnchor) {
     const shouldPrint = window.confirm('Download this puzzle?');
     if( shouldPrint ) {
-        const grid = document.getElementById('printGrid');
+        const grid = document.getElementById('printPuzzle');
         grid.style.justifyContent = 'center';
         html2canvas(grid).then( (canvas) => {
             let base64image = canvas.toDataURL('image/png');
@@ -24,6 +24,7 @@ function printPuzzle(downloadAnchor) {
 
 export default function Puzzle() {
     const downloadAnchor = useRef(null);
+    const title = useSelector(selectPuzzleTitle);
     const showPuzzle = useSelector(selectShowPuzzle);
     const history = useHistory();
     const dispatch = useDispatch();
@@ -54,11 +55,15 @@ export default function Puzzle() {
                 </Link>
             </div>
 
-            <div 
-                id="printGrid" 
-                className={styles.gridWrapper}>
-                <Grid />
-                <WordList />
+            <div
+                id="printPuzzle" 
+                className={styles.printWrapper}>
+                <h1>{title}</h1>
+                <div 
+                    className={styles.gridWrapper}>
+                        <Grid />
+                        <WordList />
+                </div>
             </div>
             <a 
                 ref={downloadAnchor} 

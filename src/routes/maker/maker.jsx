@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { makePuzzle, setShowPuzzle } from '../../reducers/gridSlice';
+import { makePuzzle, setShowPuzzle, setPuzzleTitle } from '../../reducers/gridSlice';
 import { preventEnter } from '../../utility';
 import styles from './Maker.module.scss';
 
@@ -76,6 +76,16 @@ export default function Maker() {
                     symbols or numbers! In some cases, every word might not fit in the grid and thus will
                     be removed!
                 </p>
+            </div>
+            <div className={styles.titleInput}>
+                <textarea 
+                    cols="1" 
+                    rows="1"
+                    placeholder="Title (Optional)"
+                    maxLength="25"
+                    onBlur={(e) => dispatch(setPuzzleTitle(e.target.value)) }
+                    onKeyPress={(e) => preventEnter(e)}>
+                </textarea>
             </div>
             <div className={styles.inputWrapper}>
                 {textareas}

@@ -11,7 +11,7 @@ $componentWidth: 90%;
 
 .directions {
     width: $componentWidth;
-    margin-top: 10px;
+    margin-bottom: 1rem;
     font: {
         family: var(--secondary-font);
         weight: 300;
@@ -20,6 +20,24 @@ $componentWidth: 90%;
     }
     > h1 {
         margin-bottom: 5px;
+    }
+}
+
+.titleInput {
+    width: $componentWidth;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    > textarea {
+        width: 100%;
+        border-radius: var(--border-radius);
+        text-align: center;
+        font: {
+            family: var(--secondary-font);
+            weight: 300;
+            style: italic;
+            size: 2.25em;
+        }
     }
 }
 
@@ -71,11 +89,9 @@ $componentWidth: 90%;
         font-size: 2vw;
     }
 
-    .inputWrapper > textarea{
-        font-size: 3vw;
-    }
-
-    .btnWrapper > button{
+    .inputWrapper > textarea,
+    .btnWrapper > button,
+    .titleInput > textarea {
         font-size: 3vw;
     }
 }
@@ -84,12 +100,14 @@ $componentWidth: 90%;
     .inputWrapper {
         grid-template-columns: repeat(3, 1fr);
     }
+
     .directions {
         display: flex;
         flex-direction: column;
         align-items: center;
         font-size: 3.5vw;
     }
+
     .btnWrapper {
         align-self: center;
         display: flex;
@@ -106,5 +124,19 @@ $componentWidth: 90%;
     .inputWrapper {
         height: 100vh;
         flex: 0;
+    }
+}
+
+@include for-mobile-small-only {
+    .directions {
+        font-size: 4vw;
+    }
+
+    .inputWrapper {
+        gap: 7.5px 25px;
+    }
+
+    .btnWrapper > button {
+        font-size: 1.5em;
     }
 }

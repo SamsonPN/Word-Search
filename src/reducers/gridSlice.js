@@ -11,8 +11,9 @@ export const gridSlice = createSlice({
         words: [],
         color: '',
         foundWords: 0,
-        showPuzzle: false,
-        startTime: 0
+        showPuzzle: true,
+        startTime: 0,
+        puzzleTitle: ''
     },
     reducers: {
         setWords: (state, action) => {
@@ -41,6 +42,9 @@ export const gridSlice = createSlice({
         },
         setStartTime: (state, action) => {
             state.startTime = action.payload;
+        },
+        setPuzzleTitle: (state, action) => {
+            state.puzzleTitle = action.payload;
         }
     }
 });
@@ -49,31 +53,35 @@ export const gridSlice = createSlice({
 
 /* THUNKS */
 
-// export const fetchWords = (newGame) => (dispatch) => {
-//     const wordExample = ['scold', 'shaggy', 'admit', 'witty', 'substantial', 'tense', 'weary', 'tender', 'occur', 'dress','i am gr$$00oot', 'raise','multimedia','acknowledge','honey','wallace','internship','ABARTICULATIO','articulated','samsonnguyen'];
-//     // const wordExample = ['his'];
-//     let words = wordExample.sort((a, b) => b.length - a.length);
-//     words = removeSymbols(words);
-//     let {grid, wordList} = createWordSearch(words);
-//     dispatch(setGrid(grid));
-//     dispatch(setWords(wordList));
-// };
-
+// development only
 export const fetchWords = (newGame) => (dispatch, getState) => {
     const currentGrid = getState().grid.grid;
-    const limit = Math.trunc( (Math.random() * (20 - 15 + 1)) + 15 );
-    if( currentGrid.length === 0 || newGame) {
-        fetch(`https://api.wordnik.com/v4/words.json/randomWords?hasDictionaryDef=true&minLength=3&maxLength=10&limit=${limit}&api_key=${key}`)
-            .then(res => res.json())
-            .then(fetchedWords => {
-                let words = fetchedWords.map(word => word.word);
-                words = removeSymbols(words);
-                let {grid, wordList} = createWordSearch(words);
-                dispatch(setGrid(grid));
-                dispatch(setWords(wordList));
-            })
+    const wordExample = ['scold', 'shaggy', 'admit', 'witty', 'substantial', 'tense', 'weary', 'tender', 'occur', 'dress','i am gr$$00oot', 'raise','multimedia','acknowledge','honey','wallace','internship','ABARTICULATIO','articulated','samsonnguyen'];
+    // const wordExample = ['his'];
+    if(currentGrid.length === 0 || newGame) {
+        let words = wordExample.sort((a, b) => b.length - a.length);
+        words = removeSymbols(words);
+        let {grid, wordList} = createWordSearch(words);
+        dispatch(setGrid(grid));
+        dispatch(setWords(wordList));
     }
 };
+
+// export const fetchWords = (newGame) => (dispatch, getState) => {
+//     const currentGrid = getState().grid.grid;
+//     const limit = Math.trunc( (Math.random() * (20 - 15 + 1)) + 15 );
+//     if( currentGrid.length === 0 || newGame) {
+//         fetch(`https://api.wordnik.com/v4/words.json/randomWords?hasDictionaryDef=true&minLength=3&maxLength=10&limit=${limit}&api_key=${key}`)
+//             .then(res => res.json())
+//             .then(fetchedWords => {
+//                 let words = fetchedWords.map(word => word.word);
+//                 words = removeSymbols(words);
+//                 let {grid, wordList} = createWordSearch(words);
+//                 dispatch(setGrid(grid));
+//                 dispatch(setWords(wordList));
+//             })
+//     }
+// };
 
 export const makePuzzle = words => dispatch => {
     words = removeSymbols(words);
@@ -100,7 +108,8 @@ export const {
     setColor, 
     incrementFound, 
     setShowPuzzle ,
-    setStartTime
+    setStartTime,
+    setPuzzleTitle
 } = gridSlice.actions;
 
 
@@ -113,6 +122,8 @@ export const selectColor = state => state.grid.color;
 export const selectFoundWords = state => state.grid.foundWords;
 export const selectShowPuzzle = state => state.grid.showPuzzle;
 export const selectStartTime = state => state.grid.startTime;
+export const selectPuzzleTitle = state => state.grid.puzzleTitle;
+
 
 export default gridSlice.reducer;
 

@@ -19,6 +19,25 @@
     }
 }
 
+.printWrapper {
+    display: flex;
+    flex-direction: column;
+    pointer-events: none;
+    overflow-wrap: break-word;
+    margin-top: 1.5rem;
+    > h1 {
+        width: 70%;
+        margin-left: 5.75rem;
+        margin-bottom: 1rem;
+        font: {
+            family: var(--primary-font);
+            weight: 300;
+            style: italic;
+            size: 3em; 
+        }
+    }
+}
+
 .gridWrapper {
     display: flex;
     margin-left: 5rem;
@@ -55,8 +74,12 @@
 }
 
 @include for-desktop-large-only {
-    .puzzle > h1 {
+    .puzzle > h1{
         font-size: 5vw;
+    }
+
+    .printWrapper > h1{
+        font-size: 3vw;
     }
 
     .btnWrapper {
@@ -73,6 +96,11 @@
         > h1 {
             margin-left: 1rem;
         }
+    }
+
+    .printWrapper > h1 {
+        width: 97.5%;
+        margin-left: 1rem;
     }
 
     .gridWrapper {
@@ -94,6 +122,12 @@
             font-size: 10vw;
          }
     }
+
+    .printWrapper > h1 {
+        margin-left: 0;
+        text-align: center;
+    }
+
     .btnWrapper {
         width: 97.5%;
         margin-left: 0;

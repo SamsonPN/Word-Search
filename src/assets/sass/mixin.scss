@@ -48,6 +48,12 @@
         @content;
     }
 }
+// 320px
+@mixin for-mobile-small-only {
+    @media only screen and (max-width: $mobile-small) {
+        @content;
+    }
+}
 
 
 // media rules for Grid Component

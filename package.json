@@ -8,6 +8,7 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "html2canvas": "^1.0.0-rc.5",
+    "local-storage": "^2.0.0",
     "node-sass": "^4.13.1",
     "randomcolor": "^0.5.4",
     "react": "^16.13.1",
