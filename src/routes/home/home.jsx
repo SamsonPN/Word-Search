@@ -11,7 +11,6 @@ import styles from './Home.module.scss';
 
 export default function Home() {
     const dispatch = useDispatch();
-
     useEffect(() => {
         dispatch(fetchWords());
         generateRandomColor();
