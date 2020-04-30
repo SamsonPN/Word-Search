@@ -6,6 +6,8 @@ import Maker from '../../routes/Maker';
 import Solver from '../../routes/Solver';
 import Puzzle from '../../routes/Puzzle';
 import Results from '../../routes/Results';
+import Saved from '../../routes/Saved';
+import About from '../../routes/About';
 import './App.scss';
 
 function App() {
@@ -35,6 +37,14 @@ function App() {
 
             <Route exact path="/results">
               <Results />
+            </Route>
+
+            <Route exact path="/saved">
+              <Saved />
+            </Route>
+
+            <Route exact path="/about">
+              <About />
             </Route>
             
           </div>

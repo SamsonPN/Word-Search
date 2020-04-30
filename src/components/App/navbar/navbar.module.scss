@@ -45,6 +45,9 @@
             size: 1.15em;
         }
     }
+    &:last-child {
+        margin-top: auto;
+    }
     &:hover {
         background-color: #150873;
         filter: grayscale(0%) opacity(1);
@@ -80,19 +83,6 @@
     margin: 0 2rem;
     transition: var(--transition-speed);
 }
-
-.attribution {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: auto auto 10px auto;
-    padding-bottom: 10px;
-    &:hover {
-        background-color: #150873;
-    }
-}
-
 
 @include for-desktop-large-only {
     .navbar {
@@ -173,14 +163,11 @@
     .link {
         justify-content: center;
     }
-
-    .attribution {
-        margin: 0;
-    }
 }
 
 @include for-mobile-only {
-    .attribution {
-        display: none;
+    .link {
+        width: 0;
+        flex: 1;
     }
 }
