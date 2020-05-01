@@ -12,6 +12,7 @@ import {
     incrementFound
 } from '../../reducers/gridSlice';
 import { generateRandomColor } from '../../utility';
+import PropTypes from 'prop-types';
 
 function canHighlight(firstChar, lastChar) {
     return firstChar !== '' && firstChar !== lastChar;
@@ -123,14 +124,16 @@ function showOnGrid(wordInfo) {
     document.getElementById(word).style.color = color;
 }
 
-export default function Grid() {
+export default function Grid(props) {
+    const { savedGrid } = props;
     const dispatch = useDispatch();
     const grid = useSelector(selectGrid);
+    const displayGrid = savedGrid || grid;
     const firstChar = useSelector(selectFirstChar);
     const highlighted = useSelector(selectHighlighted);
     const wordList = useSelector(selectWords);
 
-    const gridCells = grid.map((letter, i) => (
+    const gridCells = displayGrid.map((letter, i) => (
         <div
             className={styles.gridCell}
             id={i}
@@ -158,4 +161,8 @@ export default function Grid() {
         </div>
         </>
     )
+}
+
+Grid.propTypes = {
+    savedGrid: PropTypes.array
 }

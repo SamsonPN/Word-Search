@@ -1,9 +1,12 @@
 import localStorage from 'local-storage';
 
-export function saveToStorage(title, wordList) {
-    localStorage.clear();
+export function saveToStorage(title, wordList, grid) {
+    const puzzleInfo = {
+        wordList,
+        grid
+    };
     title = checkTitle(title);
-    localStorage(title, wordList);
+    localStorage(title, puzzleInfo);
 }
 
 function checkTitle(title) {

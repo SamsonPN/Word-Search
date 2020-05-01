@@ -7,11 +7,14 @@ import {
     resetFoundWords,
 } from '../../reducers/gridSlice';
 import styles from './WordList.module.scss';
+import PropTypes from 'prop-types';
 
-export default function WordList() {
+export default function WordList(props) {
+    const { savedWords } = props;
     const isInitialMount = useRef(true);
     const foundWords = useSelector(selectFoundWords);
     const words = useSelector(selectWords);
+    const displayWords = savedWords || words;
     const startTime = useSelector(selectStartTime);
     const dispatch = useDispatch();
     
@@ -39,12 +42,12 @@ export default function WordList() {
         }
     }, [dispatch])
 
-    let wordList = Object.keys(words).map(word => (
+    let wordList = Object.keys(displayWords).map(word => (
         <a
             id={word}
             key={word}
-            href={`https://www.wordnik.com/words/${word}`}
-            found={words[word].found}>
+            href={`https://www.wordnik.com/words/${word.toLowerCase()}`}
+            found={displayWords[word].found}>
             {word}
         </a>
     ))
@@ -54,4 +57,8 @@ export default function WordList() {
             {wordList}
         </div>
     )
+}
+
+WordList.propTypes = {
+    savedWords: PropTypes.object
 }
