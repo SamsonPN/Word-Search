@@ -1,7 +1,7 @@
 @import '../../assets/sass/mixin.scss';
 
 .puzzles {
-    width: 90%;
+    width: 100%;
     display: flex;
     flex-direction: row-reverse;
     justify-content: flex-end;
@@ -9,41 +9,48 @@
 }
 
 .puzzleInfo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
     margin-left: 2rem;
     > h1 {
         margin-bottom: 1rem;
         line-height: 0.75;
+        color: var(--primary-color);
+        word-break: break-word;
         font: {
             family: var(--primary-font);
             weight: 300;
             size: 3em;
         }
     }
-    > div {
-        display: flex;
-        flex-direction: column;
-        > a, button {
-            margin-bottom: 1rem;
-            border: 1px solid black;
-            border-radius: var(--border-radius);
-            padding: 5px 10px;
-            cursor: pointer;
-            text: {
-                decoration: none;
-                align: center;
-            }
-            color: white;
-            font: {
-                family: var(--secondary-font);
-                weight: 300;
-                size: 2.25em;
-            }
-            &[download] { background-color: var(--primary-color); }
-            &[play] { background-color: #0CAD1F; }
-            &[delete] { background-color: #ad0c9a; }
-            &:hover {
-                opacity: 0.8;
-            }
+}
+
+.btnWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    > a, button {
+        margin-bottom: 1rem;
+        border: 1.5px solid black;
+        border-radius: var(--border-radius);
+        padding: 5px 10px;
+        cursor: pointer;
+        text: {
+            decoration: none;
+            align: center;
+        }
+        color: white;
+        font: {
+            family: var(--secondary-font);
+            weight: 300;
+            size: 2.25em;
+        }
+        &[download] { background-color: var(--primary-color); }
+        &[play] { background-color: #0CAD1F; }
+        &[delete] { background-color: red; }
+        &:hover {
+            opacity: 0.8;
         }
     }
 }
@@ -67,3 +74,82 @@
         }
     }
 }
+
+@include for-desktop-large-only {
+    .puzzleInfo > h1{
+        font-size: 3.5vw;
+    }
+
+    .btnWrapper {
+        > a, button {
+            font-size: 3vw;
+        }
+    }
+
+    .gridWrapper > div {
+        > div, a {
+            font-size: 1.25vw;
+        }
+    }
+}
+
+@include for-desktop-only {
+    .puzzles {
+        flex-direction: column;
+    }
+
+    .puzzleInfo {
+        margin-left: 0;
+        > h1 {
+            line-height: 1;
+        }
+    }
+
+    .btnWrapper {
+        flex-direction: row;
+        > a, button {
+            margin-right: 1rem;
+        }
+    }
+
+    .gridWrapper {
+        width: 100%;
+        > div {
+            > div, a {
+                font-size: 2.5vw;
+            }
+            &:last-child {
+                width: 25%;
+                flex-direction: column;
+            }
+        }
+    }
+}
+
+@include for-tablet-only {
+    .puzzleInfo {
+        margin-left: 0;
+    }
+
+    .btnWrapper {
+        flex-direction: column;
+        align-items: center;
+        > a, button {
+            width: 100%;
+            margin-right: 0;
+        }
+    }
+}
+
+@include for-mobile-only {
+    .gridWrapper > div:last-child{
+        width: 20%;
+    }
+}
+
+@include for-mobile-small-only {
+    .btnWrapper > a, button{
+        font-size: 2em;
+    }
+}
+

@@ -12,7 +12,15 @@ export default function Saved() {
     return (
         <div className={styles.saved}>
             <div className={styles.pageInfo}>
-                Saved Puzzles
+                <h1>Saved Puzzles</h1>
+                <ul>
+                    <li>
+                        Any puzzles you create will be saved here
+                    </li>
+                    <li>
+                        You can only view them from this computer and browser
+                    </li>
+                </ul>
             </div>
             <div className={styles.puzzlesWrapper}>
                 {puzzles}

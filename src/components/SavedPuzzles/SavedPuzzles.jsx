@@ -48,7 +48,7 @@ export default function SavedPuzzles(props) {
 
             <div className={styles.puzzleInfo}>
                 <h1>{puzzle}</h1>
-                <div>
+                <div className={styles.btnWrapper}>
                     <Link
                         to="/puzzle"
                         download=""
