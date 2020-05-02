@@ -5,7 +5,7 @@ export default function About() {
     return (
         <div
             className={styles.about}>
-                About
+                <h1>About:</h1>
         </div>
     )
 }

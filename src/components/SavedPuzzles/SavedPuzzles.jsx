@@ -32,7 +32,7 @@ function deletePuzzle(e, puzzle) {
         localStorage.remove(puzzle);
         setTimeout(() => {
             window.location.reload();
-        }, 1000);
+        }, 250);
     }
     else {
         e.preventDefault();

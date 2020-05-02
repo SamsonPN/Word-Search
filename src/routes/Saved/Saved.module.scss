@@ -34,6 +34,27 @@
     }
 }
 
+.btnWrapper {
+    width: 90%;
+    > button {
+        background-color: red;
+        color: white;
+        border: 1px solid black;
+        border-radius: var(--border-radius);
+        margin-bottom: 1.5rem;
+        padding: 5px 10px;
+        cursor: pointer;
+        font: {
+            family: var(--primary-font);
+            weight: 700;
+            size: 2em;
+        }
+        &:hover {
+            color: black;
+        }
+    }
+}
+
 .puzzlesWrapper {
     width: 90%;
     display: flex;
@@ -61,6 +82,12 @@
     }
 }
 
+@include for-tablet-only {
+    .btnWrapper > button {
+        width: 100%;
+    }
+}
+
 @include for-mobile-only {
     .pageInfo > ul > li {
         margin-left: 0;
@@ -70,5 +97,9 @@
 @include for-mobile-small-only {
     .pageInfo {
         font-size: 1.25em;
+    }
+    
+    .btnWrapper > button {
+        font-size: 1.75em;
     }
 }

@@ -29,6 +29,7 @@
         width: 70%;
         margin-left: 5.75rem;
         margin-bottom: 1rem;
+        word-break: break-word;
         font: {
             family: var(--primary-font);
             weight: 300;
@@ -125,7 +126,6 @@
 
     .printWrapper > h1 {
         margin-left: 0;
-        text-align: center;
     }
 
     .btnWrapper {

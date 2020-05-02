@@ -29,9 +29,11 @@ $componentWidth: 90%;
     align-items: center;
     margin-bottom: 0.5rem;
     > textarea {
+        overflow-y: hidden;
         width: 100%;
         border-radius: var(--border-radius);
         text-align: center;
+        white-space: nowrap;
         font: {
             family: var(--secondary-font);
             weight: 300;

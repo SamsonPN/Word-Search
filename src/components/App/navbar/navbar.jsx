@@ -32,7 +32,7 @@ export default function navbar() {
                     className={styles.linkImg}
                     src={Write} 
                     alt="Pencil"/>
-                <span>Puzzle Maker</span>
+                <span>Maker</span>
             </Link>
 
             <Link 
@@ -42,7 +42,7 @@ export default function navbar() {
                     className={styles.linkImg} 
                     src={Solver} 
                     alt="Solver"/>
-                <span>Puzzle Solver</span>
+                <span>Solver</span>
             </Link>
 
             <Link 

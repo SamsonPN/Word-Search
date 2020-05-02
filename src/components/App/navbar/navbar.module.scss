@@ -39,7 +39,7 @@
     > span {
         display: none;
         margin-left: 1rem;
-        white-space: nowrap; //remove this if the word starts showing then take this out
+        white-space: nowrap;
         font: {
             family: var(--secondary-font);
             size: 1.15em;
