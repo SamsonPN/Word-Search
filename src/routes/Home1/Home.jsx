@@ -6,8 +6,6 @@ import { fetchWords, setStartTime } from '../../reducers/gridSlice';
 import { generateRandomColor } from '../../utility';
 import styles from './Home.module.scss';
 
-
-
 export default function Home() {
     const dispatch = useDispatch();
     useEffect(() => {
