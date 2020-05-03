@@ -69,7 +69,7 @@ export const gridSlice = createSlice({
 export const fetchWords = (newGame) => (dispatch, getState) => {
     const currentGrid = getState().grid.grid;
     if( currentGrid.length === 0 || newGame) {
-        fetch('/.netlify/functions/getwords')
+        fetch('/.netlify/functions/getWords')
             .then(res => res.json())
             .then(fetchedWords => {
                 let words = fetchedWords.map(word => word.word);
