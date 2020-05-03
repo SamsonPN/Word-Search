@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { createWordSearch, removeSymbols, saveToStorage } from '../utility';
-import { key } from '../test';
 
 export const gridSlice = createSlice({
     name: 'grid',
