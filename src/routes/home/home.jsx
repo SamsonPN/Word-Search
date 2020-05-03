@@ -4,7 +4,6 @@ import Grid from '../../components/Grid';
 import WordList from '../../components/WordList';
 import { fetchWords, setStartTime } from '../../reducers/gridSlice';
 import { generateRandomColor } from '../../utility';
-import { BadgeMobile } from '../../assets/images';
 import styles from './Home.module.scss';
 
 
@@ -22,14 +21,6 @@ export default function Home() {
             <div className={styles.gridWrapper}>
                 <Grid />
                 <WordList />
-                <a
-                    className={styles.attribution}
-                    href="https://www.wordnik.com/"
-                    title="Go to Wordnik.com">
-                    <img 
-                        src={BadgeMobile} 
-                        alt="Powered by Wordnik <3"/>
-                </a>
             </div>
         </div>
     )

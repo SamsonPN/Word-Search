@@ -1,7 +1,7 @@
 @import '../../assets/sass/mixin.scss';
 
 .about {
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -14,5 +14,47 @@
     }
     > h1 {
         width: 90%;
+        margin-bottom: 1rem;
+    }
+}
+
+.intro {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    > p {
+        margin-bottom: 1rem;
+    }
+}
+
+.attribution {
+    width: 90%;
+    > h2 {
+        margin-bottom: 1rem;
+    }
+    > ul {
+        margin-bottom: 1rem;
+        list-style-position: inside;
+        > li {
+            margin-left: 1rem;
+            > a {
+                text-decoration: none;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+    > a {
+        margin-left: 1rem;
+        &:hover {
+            border-bottom: 1px solid #707070;
+        }
+    }
+}
+
+@include for-desktop-large-only {
+    .about, .attribution {
+        font-size: 2vw;
     }
 }
