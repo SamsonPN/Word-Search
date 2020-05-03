@@ -9,7 +9,7 @@
 }
 
 .pageInfo {
-    width: 90%;
+    width: var(--component-width);
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -35,7 +35,7 @@
 }
 
 .btnWrapper {
-    width: 90%;
+    width: var(--component-width);
     > button {
         background-color: red;
         color: white;
@@ -56,7 +56,7 @@
 }
 
 .puzzlesWrapper {
-    width: 90%;
+    width: var(--component-width);
     display: flex;
     flex-direction: column;
     align-items: flex-end;

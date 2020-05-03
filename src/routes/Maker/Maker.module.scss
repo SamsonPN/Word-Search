@@ -1,5 +1,4 @@
 @import '../../assets/sass/mixin.scss';
-$componentWidth: 90%;
 
 .maker {
     height: 100vh;
@@ -10,7 +9,7 @@ $componentWidth: 90%;
 }
 
 .directions {
-    width: $componentWidth;
+    width: var(--component-width);
     margin-bottom: 1rem;
     font: {
         family: var(--secondary-font);
@@ -24,7 +23,7 @@ $componentWidth: 90%;
 }
 
 .titleInput {
-    width: $componentWidth;
+    width: var(--component-width);
     display: flex;
     align-items: center;
     margin-bottom: 0.5rem;
@@ -44,7 +43,7 @@ $componentWidth: 90%;
 }
 
 .inputWrapper {
-    width: $componentWidth;
+    width: var(--component-width);
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     align-items: center;
@@ -66,7 +65,7 @@ $componentWidth: 90%;
 }
 
 .btnWrapper {
-    width: $componentWidth;
+    width: var(--component-width);
     display: flex;
     align-items: center;
     flex: 1;

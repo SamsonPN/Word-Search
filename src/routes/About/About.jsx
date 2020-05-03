@@ -9,7 +9,7 @@ export default function About() {
                 <h1>About:</h1>
                 <div className={styles.intro}>
                     <p>
-                        Hi, I’m Samson, the creator of this web application. 
+                        Hi, I’m Samson, the creator of this web application.
                         For several years, whenever I’d get pretty bored of doing work, 
                         I’d play a word search game on my phone. 
                         I never really thought of how a word search generator worked 
@@ -21,7 +21,9 @@ export default function About() {
                     <p>
                         Check out my personal website: 
                         <a href="https://samsonn.com"> samsonn.com </a> 
-                        for more of my work and contact information. 
+                        for more of my work and contact information and the 
+                        <a href="https://github.com/SotaSamson96/word-search"> github repo </a>
+                        for this application: 
                     </p>
                 </div>
 

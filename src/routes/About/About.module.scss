@@ -19,24 +19,32 @@
 }
 
 .intro {
-    width: 90%;
+    width: var(--component-width);
     display: flex;
     flex-direction: column;
     > p {
         margin-bottom: 1rem;
+        line-height: 1.5;
+        > a {
+            text-decoration: none;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
     }
 }
 
 .attribution {
-    width: 90%;
+    width: var(--component-width);
     > h2 {
-        margin-bottom: 1rem;
+        margin-bottom: 0.5rem;
     }
     > ul {
         margin-bottom: 1rem;
         list-style-position: inside;
         > li {
             margin-left: 1rem;
+            margin-bottom: 5px;
             > a {
                 text-decoration: none;
                 &:hover {

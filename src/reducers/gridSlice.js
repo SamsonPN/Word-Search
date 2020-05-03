@@ -54,34 +54,34 @@ export const gridSlice = createSlice({
 /* THUNKS */
 
 // development only
-export const fetchWords = (newGame) => (dispatch, getState) => {
-    const currentGrid = getState().grid.grid;
-    const wordExample = ['scold', 'shaggy', 'admit', 'witty', 'substantial', 'tense', 'weary', 'tender', 'occur', 'dress','i am gr$$00oot', 'raise','multimedia','acknowledge','honey','wallace','internship','ABARTICULATIO','articulated','samsonnguyen'];
-    // const wordExample = ['his'];
-    if(currentGrid.length === 0 || newGame) {
-        let words = wordExample.sort((a, b) => b.length - a.length);
-        words = removeSymbols(words);
-        let {grid, wordList} = createWordSearch(words);
-        dispatch(setGrid(grid));
-        dispatch(setWords(wordList));
-    }
-};
-
 // export const fetchWords = (newGame) => (dispatch, getState) => {
 //     const currentGrid = getState().grid.grid;
-//     const limit = Math.trunc( (Math.random() * (20 - 15 + 1)) + 15 );
-//     if( currentGrid.length === 0 || newGame) {
-//         fetch(`https://api.wordnik.com/v4/words.json/randomWords?hasDictionaryDef=true&minLength=3&maxLength=10&limit=${limit}&api_key=${key}`)
-//             .then(res => res.json())
-//             .then(fetchedWords => {
-//                 let words = fetchedWords.map(word => word.word);
-//                 words = removeSymbols(words);
-//                 let {grid, wordList} = createWordSearch(words);
-//                 dispatch(setGrid(grid));
-//                 dispatch(setWords(wordList));
-//             })
+//     const wordExample = ['scold', 'shaggy', 'admit', 'witty', 'substantial', 'tense', 'weary', 'tender', 'occur', 'dress','i am gr$$00oot', 'raise','multimedia','acknowledge','honey','wallace','internship','ABARTICULATIO','articulated','samsonnguyen'];
+//     // const wordExample = ['his'];
+//     if(currentGrid.length === 0 || newGame) {
+//         let words = wordExample.sort((a, b) => b.length - a.length);
+//         words = removeSymbols(words);
+//         let {grid, wordList} = createWordSearch(words);
+//         dispatch(setGrid(grid));
+//         dispatch(setWords(wordList));
 //     }
 // };
+
+export const fetchWords = (newGame) => (dispatch, getState) => {
+    const currentGrid = getState().grid.grid;
+    const limit = Math.trunc( (Math.random() * (20 - 15 + 1)) + 15 );
+    if( currentGrid.length === 0 || newGame) {
+        fetch(`https://api.wordnik.com/v4/words.json/randomWords?hasDictionaryDef=true&minLength=3&maxLength=10&limit=${limit}&api_key=${key}`)
+            .then(res => res.json())
+            .then(fetchedWords => {
+                let words = fetchedWords.map(word => word.word);
+                words = removeSymbols(words);
+                let {grid, wordList} = createWordSearch(words);
+                dispatch(setGrid(grid));
+                dispatch(setWords(wordList));
+            })
+    }
+};
 
 export const makePuzzle = words => (dispatch, getState) => {
     const title = getState().grid.puzzleTitle;

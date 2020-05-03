@@ -1,5 +1,4 @@
 @import '../../assets/sass/mixin.scss';
-$componentWidth: 90%;
 
 .solver {
     min-height: 100%;
@@ -16,7 +15,7 @@ $componentWidth: 90%;
 }
 
 .directions {
-    width: $componentWidth;
+    width: var(--component-width);
     margin-bottom: 2rem;
     > ol {
         margin-left: 1.5rem;
@@ -35,7 +34,7 @@ $componentWidth: 90%;
 }
 
 .input {
-    width: $componentWidth;
+    width: var(--component-width);
     margin-bottom: 2rem;
     > textarea {
         width: 50%;
@@ -51,7 +50,7 @@ $componentWidth: 90%;
 }
 
 .wordList {
-    width: $componentWidth;
+    width: var(--component-width);
     > p {
         margin-bottom: 1rem;
     }
@@ -64,7 +63,7 @@ $componentWidth: 90%;
 }
 
 .btnWrapper {
-    width: $componentWidth;
+    width: var(--component-width);
     display: flex;
     > a {
         border-radius: var(--border-radius);

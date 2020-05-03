@@ -1,7 +1,7 @@
 @import '../../assets/sass/mixin.scss';
 
 .grid {
-    width: 90%;
+    width: var(--component-width);
     display: grid;
     grid-template-columns: repeat( var(--size), 1fr);
     justify-content: center;
