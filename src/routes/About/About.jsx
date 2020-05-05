@@ -23,7 +23,7 @@ export default function About() {
                         <a href="https://samsonn.com"> samsonn.com </a> 
                         for more of my work and contact information and the 
                         <a href="https://github.com/SotaSamson96/word-search"> github repo </a>
-                        for this application: 
+                        for this application
                     </p>
                 </div>
 
