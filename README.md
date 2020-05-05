@@ -6,7 +6,7 @@
 
 ## Website: https://wordsearch.samsonn.com/
 
-## Demo Link: Coming soon...
+## Demo Link: https://youtu.be/AvhDpE8cP-8
 ## Technologies Used: React, Redux, SCSS
 
 
